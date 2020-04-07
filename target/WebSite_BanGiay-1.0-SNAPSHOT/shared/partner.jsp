@@ -24,10 +24,10 @@
                 <img src="<c:url value="/resources/images/brand-3.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
             </div>
             <div class="col partner-col text-center">
-                <img src="<c:url value="/resources/images/Converse.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
+                <img src="<c:url value="/resources/images/brand-5.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
             </div>
             <div class="col partner-col text-center">
-                <img src="<c:url value="/resources/images/brand-5.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
+                <img src="<c:url value="/resources/images/Converse.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
             </div>
         </div>
     </div>

@@ -15,6 +15,6 @@
 
     <!-- Activates scanning of @Repository and @Service and @Component -->
 
-    <context:component-scan base-package="com.mycompany.WebSite_BanGiay" />
+    <context:component-scan base-package="com.Nhom12.WebSite_BanGiay" />
 
 </beans>

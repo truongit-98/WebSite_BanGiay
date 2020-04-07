@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.hibernate.SessionFactory;
-import com.nhom12.Database.dao.*;
-import com.nhom12.Database.Models.*;
-import com.nhom12.Database.HibernateUtil;
+import com.Nhom12.Database.Models.*;
+import com.Nhom12.Database.HibernateUtil;
 import java.util.List;
 
 

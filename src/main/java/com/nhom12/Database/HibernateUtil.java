@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.Nhom12.Database;
+package com.nhom12.Database;
 
 import java.util.Properties;
 import org.hibernate.SessionFactory;

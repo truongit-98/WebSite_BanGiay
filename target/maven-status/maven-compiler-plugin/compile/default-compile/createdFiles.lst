@@ -1,4 +1,4 @@
 com\nhom12\Database\Models\Student.class
+com\nhom12\controller\HomeController.class
 com\nhom12\Database\HibernateUtil.class
 com\nhom12\Database\Models\User.class
-com\nhom12\WebSite_BanGiay\controller\HomeController.class

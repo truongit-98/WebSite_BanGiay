@@ -20,7 +20,7 @@
 
               http://www.springframework.org/schema/context/spring-context.xsd">
 
-   <context:component-scan base-package="com.Nhom12.WebSite_BanGiay.controller" />
+   <context:component-scan base-package="com.nhom12.controller" />
 
    <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/resources/"/>

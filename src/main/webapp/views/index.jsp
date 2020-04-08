@@ -15,14 +15,11 @@
     <c:set var="context" value="${pageContext.request.contextPath}" />
     
     <div id="page">
-        <%@include file="/shared/nav-bar.jsp" %>%>
+        <%@include file="/shared/nav-bar.jsp" %>
         <aside id="colorlib-hero">
             <div class="flexslider">
                 <ul class="slides">
                     <li style="background-image: url(<c:url value="/resources/images/img_bg_1.jpg"/>);">
-                        <div class="overlay">
-                            <img src="$<c:url value="/resources/images/img_bg_1.jpg"/>" alt="Alternate Text" />
-                        </div>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-sm-6 offset-sm-3 text-center slider-text ">

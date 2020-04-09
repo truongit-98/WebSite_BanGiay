@@ -1,4 +1,6 @@
-com\nhom12\Database\Models\Student.class
-com\nhom12\controller\HomeController.class
 com\nhom12\Database\HibernateUtil.class
-com\nhom12\Database\Models\User.class
+com\nhom12\Database\Models\Product.class
+com\nhom12\Database\dao\ProductDao.class
+com\nhom12\controller\CartController.class
+com\nhom12\controller\HomeController.class
+com\nhom12\Database\Models\CartModel.class

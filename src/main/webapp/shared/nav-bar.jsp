@@ -32,6 +32,8 @@
                         <li><a href="">Women</a></li>
                         <li><a href="">About</a></li>
                         <li><a href="">Contact</a></li>
+                        <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [<span id="cart-quantity">0</span>]</a></li>
+
                     </ul>
                 </div>
             </div>

@@ -42,7 +42,7 @@
     <!-- Theme style  -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
+     <link rel="stylesheet" href="<c:url value="/resources/css/mystyle.css"/>">   
 
 
     <!-- jQuery -->
@@ -60,7 +60,7 @@
     <!-- Owl carousel -->
     <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"></script>
     <!-- Magnific Popup -->
-    <script src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/magnific-popup.min.js"/>"></script>
     <script src="<c:url value="/resources/js/magnific-popup-options.js"/>"></script>
     <!-- Date Picker -->
     <script src="<c:url value="/resources/js/bootstrap-datepicker.js"/>"></script>
@@ -68,6 +68,7 @@
     <script src="<c:url value="/resources/js/jquery.stellar.min.js"/>"></script>
     <!-- Main -->
     <script src="<c:url value="/resources/js/main.js"/>"></script>
+    <script src="<c:url value="/resources/js/myjs.js"/>"></script>
 
 
 </head>

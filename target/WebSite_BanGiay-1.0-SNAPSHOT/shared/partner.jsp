@@ -15,16 +15,16 @@
         </div>
         <div class="row">
             <div class="col partner-col text-center">
-                <img src="<c:url value="/resources/images/brand-1.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
+                <img src="<c:url value="/resources/images/brand_1.jpg"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
             </div>
             <div class="col partner-col text-center">
-                <img src="<c:url value="/resources/images/brand-2.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
+                <img src="<c:url value="/resources/images/brand-2.jpg"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
             </div>
             <div class="col partner-col text-center">
-                <img src="<c:url value="/resources/images/brand-3.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
+                <img src="<c:url value="/resources/images/brand-3.jpg"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
             </div>
             <div class="col partner-col text-center">
-                <img src="<c:url value="/resources/images/brand-5.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
+                <img src="<c:url value="/resources/images/brand-5.jpg"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">
             </div>
             <div class="col partner-col text-center">
                 <img src="<c:url value="/resources/images/Converse.png"/>" class="img-fluid" alt="Free html4 bootstrap 4 template">

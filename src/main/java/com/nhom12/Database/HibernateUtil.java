@@ -16,7 +16,9 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 
 public class HibernateUtil {
+
     private static SessionFactory sessionFactory;
+
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
@@ -33,10 +35,11 @@ public class HibernateUtil {
                 settings.put(Environment.HBM2DDL_AUTO, "create-drop");
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Product.class);
+                configuration.addAnnotatedClass(Producer.class);
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
-                Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
-                sessionFactory = metadata.getSessionFactoryBuilder().build();
+//                Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
+                sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             } catch (Exception e) {
                 e.printStackTrace();
             }

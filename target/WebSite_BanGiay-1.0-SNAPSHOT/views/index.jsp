@@ -94,12 +94,12 @@
                         <c:forEach items="${products}"  var="item" >
                             <div class="col-lg-3 mb-4 text-center">
                                 <div class="product-entry border">
-                                    <a href="WebSite_BanGiay/home/${item[1]}" class="prod-img">
-                                        <img src="/WebSite_BanGiay/resources/images/${item[2]}" class="img-fluid" alt="${item[2]}">
+                                    <a href="WebSite_BanGiay/home/${item.masp}" class="prod-img">
+                                        <img src="<c:url value="/resources/images/${item.anh}"/>" class="img-fluid" alt="${item.anh}">
                                     </a>
                                     <div class="desc">
-                                        <h2><a href="WebSite_BanGiay/home/${item[0]}">${item[1]}</a></h2>
-                                        <i class="icon-shopping-cart cart-hover" data-id="123" id="cart-id"></i><span class="price">${item[5]}</span>
+                                        <h2><a href="WebSite_BanGiay/home/${item.masp}">${item.tensp}</a></h2>
+                                        <i class="icon-shopping-cart cart-hover" data-id="123" id="cart-id"></i><span class="price">${item.dongia}</span>
                                     </div>
                                 </div>
                             </div>

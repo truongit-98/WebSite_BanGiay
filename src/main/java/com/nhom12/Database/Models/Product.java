@@ -4,39 +4,65 @@
  * and open the template in the editor.
  */
 package com.nhom12.Database.Models;
-
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.*;
-
 /**
- *
  * @author Truong98
  */
 @Entity
 @Table(name="sanpham")
 public class Product {
     
-    private Integer masp;
-    private String tensp;
-    private int soluongtong;
-    private double dongia;
-    private String mota;
-    private Date ngaycapnhat;
-    private String anh;
-    private String anh2;
-    private String anh3;
-    private Integer mansx;
-    
     @Id
-    @Column(name="MaSP")
-    public Integer getMasp(){
+    private int masp;
+    @Column(name = "TenSP")
+    private String tensp;
+    @Column(name = "SoLuongTong")
+    private int soluongtong;
+    @Column(name = "DonGia")
+    private long dongia;
+    @Column(name = "MoTa")
+    private String mota;
+    @Column(name = "NgayCapNhat")
+    private Date ngaycapnhat;
+    @Column(name = "Anh")
+    private String anh;
+    @Column(name = "Anh2")
+    private String anh2;
+    @Column(name = "Anh3")
+    private String anh3;
+    @Column(name = "MaNSX")
+    private int mansx;
+    
+//    @OneToMany(mappedBy = "product")
+//    Set<BillImportDetail> listBillImportDetail;
+//    
+//    @OneToMany(mappedBy = "product")
+//    Set<OrderDetail> listOrderDetail;
+//    
+//    @OneToMany(mappedBy = "product")
+//    Set<ProductDetail> listProductDetail;
+    
+    @ManyToOne
+    @JoinColumn(name = "mansx")
+    private Producer producer; 
+
+    public Producer getProducer() {
+            return producer;
+    }
+
+    public void setProducer(Producer producer) {
+            this.producer = producer;
+    }
+    
+    public int getMasp(){
         return masp;
     }
     public void setMasp(Integer id){
         masp = id;
     }
     
-    @Column(name="TenSP")
     public String getTensp(){
         return tensp;
     }
@@ -44,7 +70,6 @@ public class Product {
         tensp = name;
     }
     
-    @Column(name="SoLuongTong")
     public int getSoluongtong(){
         return soluongtong;
     }
@@ -52,15 +77,13 @@ public class Product {
         soluongtong = soluong;
     }
     
-    @Column(name="DonGia")
-    public Double getDongia(){
+    public long getDongia(){
         return dongia;
     }
-    public void setDongia(Double gia){
+    public void setDongia(long gia){
         dongia = gia;
     }
     
-    @Column(name="MoTa")
      public String getMota(){
         return mota;
     }
@@ -68,7 +91,6 @@ public class Product {
         mota = str;
     }
     
-    @Column(name="NgayCapNhat")
      public Date getNgaycapnhat(){
         return ngaycapnhat;
     }
@@ -76,7 +98,6 @@ public class Product {
         ngaycapnhat = date;
     }
     
-    @Column(name="Anh")
      public String getAnh(){
         return anh;
     }
@@ -84,7 +105,6 @@ public class Product {
         anh = url;
     }
     
-   @Column(name="Anh2")
      public String getAnh2(){
         return anh2;
     }
@@ -92,7 +112,6 @@ public class Product {
         anh2 = url;
     }
 
-    @Column(name="Anh3")
      public String getAnh3(){
         return anh3;
     }
@@ -100,8 +119,7 @@ public class Product {
         anh3 = url;
     }
     
-    @Column(name="MaNSX")
-     public Integer getMansx(){
+     public int getMansx(){
         return mansx;
     }
     public void setMansx(Integer maNSX){

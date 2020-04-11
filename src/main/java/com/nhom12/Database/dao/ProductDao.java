@@ -38,14 +38,18 @@ public class ProductDao {
             //session = factory.getCurrentSession();
             session.getTransaction().begin();
 
-            String sql = "FROM " + Product.class.getName();
-            Query<Product> query = session.createQuery(sql);
+            String sql = "from Product";
+            Query query = session.createQuery(sql);
             products = (List<Product>)query.list();
+//            for(Product p: product1s){
+//                products.add((Product)p);
+//            }
             session.getTransaction().commit();
 
         } catch (Exception ex) {
-            ex.printStackTrace();
-            session.getTransaction().rollback();
+             session.getTransaction().rollback();
+            throw ex;
+           
         } 
         return products;
     }

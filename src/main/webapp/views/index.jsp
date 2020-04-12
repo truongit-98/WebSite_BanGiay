@@ -99,7 +99,7 @@
                                     </a>
                                     <div class="desc">
                                         <h2><a href="WebSite_BanGiay/home/${item.masp}">${item.tensp}</a></h2>
-                                        <i class="icon-shopping-cart cart-hover" data-id="123" id="cart-id"></i><span class="price">${item.dongia}</span>
+                                        <i class="icon-shopping-cart cart-hover" data-id="${item.masp}" id="cart-id"></i><span class="price">${item.dongia}</span>
                                     </div>
                                 </div>
                             </div>
@@ -123,6 +123,7 @@
                 $('.slider-text').addClass('animated fadeInUp');
             });
             $('#cart-id').click(function (e) {
+                debugger
                 e.preventDefault();
                 var productId = $(this).data('id');
                 $.ajax({
@@ -131,14 +132,15 @@
                     dataType: 'json',
                     type: 'POST',
                     success: function (res) {
-                        console.log(res);
-                        //if (res.status == true) {
-                        alert("ok");
-//                                $('.add-to-cart-success').show();
-//                                var element = parseInt(document.querySelector('#cart-quantity').textContent);
-//                                element = element + 1;
-//                                document.querySelector('#cart-quantity').innerHTML = element;
-                        // }
+                        if (res.status == true) {
+                            alert("ok");
+                            //$('.add-to-cart-success').show();
+                            var element = parseInt(document.querySelector('#cart-quantity').textContent);
+                            element = element + 1;
+                            document.querySelector('#cart-quantity').innerHTML = element;
+                        } else {
+                            alert("fail");
+                        }
                     }
                 });
             });

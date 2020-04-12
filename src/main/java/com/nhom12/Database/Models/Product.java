@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.nhom12.Database.Models;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="sanpham")
-public class Product {
+public class Product implements Serializable {
     
     @Id
     private int masp;
@@ -35,6 +36,9 @@ public class Product {
     @Column(name = "MaNSX")
     private int mansx;
     
+    public Product(){
+        
+    }
 //    @OneToMany(mappedBy = "product")
 //    Set<BillImportDetail> listBillImportDetail;
 //    

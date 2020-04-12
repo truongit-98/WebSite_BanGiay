@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.nhom12.Database.dao.ProductDao;
 import com.nhom12.Database.Models.*;
+import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author Truong98
@@ -24,18 +27,54 @@ import java.util.List;
 @Controller
 @EnableWebMvc
 public class CartController {
-    
-    @RequestMapping(value = "/cart", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+
+    private static String cartSession = "cartSession";
+
+    @RequestMapping(value = "/cart", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Product> addProduct(HttpServletRequest request){
-        String id = request.getParameter("productId");
+    public Map addProduct(HttpServletRequest request, HttpSession session) {
+        String idParam = request.getParameter("productId");
+
         ProductDao dao = new ProductDao();
-        List<Product> lstProduct = dao.getAllProducts();
-        return lstProduct;
+        try {
+           Product product = dao.getProduct(Integer.parseInt(idParam));
+            if (product != null) {
+                List<CartModel> carts = (List<CartModel>) session.getAttribute(cartSession);
+
+                if (carts != null) {
+                    int index = CartModel.findIndex(carts, product.getMasp());
+                    if (index > -1) {
+                        carts.get(index).setQuantity(carts.get(index).getQuantity() + 1);
+                    } else {
+                        CartModel cartModel = new CartModel();
+                        cartModel.setProductId(product.getMasp());
+                        cartModel.setProductName(product.getTensp());
+                        cartModel.setPrice(product.getDongia());
+                        cartModel.setUrlImg(product.getAnh());
+                        cartModel.setQuantity(1);
+                        carts.add(cartModel);
+                    }
+
+                } else {
+                    carts = new ArrayList<>();
+                    CartModel cartModel = new CartModel();
+                    cartModel.setProductId(product.getMasp());
+                    cartModel.setProductName(product.getTensp());
+                    cartModel.setPrice(product.getDongia());
+                    cartModel.setUrlImg(product.getAnh());
+                    cartModel.setQuantity(1);
+                    carts.add(cartModel);
+
+                }
+                session.setAttribute(cartSession, carts);
+                return Collections.singletonMap("status", true);
+            }
+            return Collections.singletonMap("statue", false);
+        } catch (NumberFormatException ex) {
+             ex.printStackTrace();
+            return Collections.singletonMap("statue", false);
+
+        }
     }
-//    @RequestMapping(value = "/json", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseBody
-//    public Map add2(){
-//        return Collections.singletonMap("status", "true");
-//    }
+
 }

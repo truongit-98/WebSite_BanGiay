@@ -17,8 +17,6 @@ import java.util.Set;
 public class Order {
     @Id
     private int MaDH;
-    private int MaKH;
-    private int MaNV;
     private Date NgayDat;
     private Date NgayGiao;
     private String DCGiao;
@@ -29,8 +27,69 @@ public class Order {
     private String Email;
     private String SDT;
     
-//    @OneToMany(mappedBy = "order")
-//    Set<OrderDetail> listOrderDetail;
+    public int getMaDH(){
+        return MaDH;
+    }
+    public void setMaDH(int id){
+        MaDH = id;
+    }
+    public Date getNgayDat(){
+        return NgayDat;
+    }
+    public void setNgayDat(Date date){
+        NgayDat = date;
+    }
+    public Date getNgayGiao(){
+        return NgayGiao;
+    }
+    public void setNgayGiao(Date date){
+        NgayGiao = date;
+    }
+    public String getDCGiao(){
+        return DCGiao;
+    }
+    public void setDCGiao(String address){
+        DCGiao = address;
+    }
+    public double getTongTien(){
+        return TongTien;
+    }
+    public void setTongTien(double total){
+        TongTien = total;
+    }        
+    public String getThanhToan(){
+        return ThanhToan;
+    }
+    public void setThanhToan(String thanhToan){
+        ThanhToan = thanhToan;
+    }
+    public String getTinhTrang(){
+        return TinhTrang;
+    }
+    public void setTinhTrang(String tinhTrang){
+        TinhTrang = tinhTrang;
+    }
+    public String getHoTen(){
+        return HoTen;
+    }
+    public void setHoTen(String fullName){
+        HoTen = fullName;
+    }
+    public String getEmail(){
+        return Email;
+    }
+    public void setEmail(String email){
+        Email = email;
+    }
+    public String getSDT(){
+        return SDT;
+    }    
+    public void setSDT(String sdt){
+        SDT = sdt;
+    }
+    
+    @OneToMany(mappedBy = "order")
+    Set<OrderDetail> listOrderDetail;
     
     @ManyToOne
     @JoinColumn(name = "MaKH")

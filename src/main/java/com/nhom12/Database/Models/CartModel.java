@@ -5,21 +5,23 @@
  */
 package com.nhom12.Database.Models;
 
+import java.util.List;
+
 /**
  *
  * @author Truong98
  */
 public class CartModel {
-    private String productId;
+    private int productId;
     private String productName;
     private int quantity;
     private String urlImg;
-    private Double price;
+    private long price;
     
-    public String getProductId(){
+    public int getProductId(){
         return productId;
     }
-    public void setProductId(String id){
+    public void setProductId(int id){
         productId = id;
     }
     
@@ -44,11 +46,24 @@ public class CartModel {
         urlImg = url;
     }
     
-    public Double getPrice(){
+    public long getPrice(){
         return price;
     }
-    public void setPrice(Double price){
+    public void setPrice(long price){
         this.price = price;
+    }
+    public CartModel(){
+        
+    }
+    
+    public static int findIndex(List<CartModel> listCarts, int id){
+          for(int i=0; i<listCarts.size(); i++){
+            if(listCarts.get(i).getProductId() == id){
+                return i;
+                
+            }
+        }
+          return -1;
     }
     
 }

@@ -14,7 +14,23 @@ import java.io.Serializable;
 public class BillImportProductKey implements Serializable {
     @Column(name = "MaPN")
     int mapn;
- 
+    
+    public int getMapn(){
+        return mapn;
+    }
+    public void setMapn(int id){
+        mapn = id;
+    }
+        
     @Column(name = "MaSP")
     int masp;
+    
+    public int getMasp(){
+        return masp;
+    }
+    public void setMasp(int id){
+        masp = id;
+    }
+            
+    
 }

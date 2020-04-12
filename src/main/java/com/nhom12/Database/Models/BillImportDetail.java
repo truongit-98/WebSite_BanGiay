@@ -22,12 +22,29 @@ public class BillImportDetail {
 //    @Id
 //    private int MaSP;
     private int SoLuong;
-    private Double Gia;
-    private int MaSize;
-    private int MaMau;
-    private Double ThanhTien;
+    private double Gia;
+    private double ThanhTien;
 
+    public int getSoLuong(){
+        return SoLuong;
+    }
+    public void setSoLuong(int so){
+        SoLuong = so;
+    }
     
+    public double getGia(){
+        return Gia;
+    }
+    public void setGia(double price){
+        Gia = price;
+    }
+    public double getThanhTien(){
+        return ThanhTien;
+    }
+    public void setThanhTien(double total){
+        ThanhTien = total;
+    }
+            
     @ManyToOne
     @MapsId("MaPN")
     @JoinColumn(name = "MaPN")

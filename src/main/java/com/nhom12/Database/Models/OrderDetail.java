@@ -19,9 +19,22 @@ public class OrderDetail {
     @EmbeddedId
     OrderProductKey id;
     private int SoLuong;
-    private Double DonGia;
-    private int MaSize;
-    private int MaMau;
+    private long DonGia;
+  
+    public int getSoLuong(){
+        return SoLuong;
+    }
+    public void setSoLuong(int soLuong){
+        SoLuong = soLuong;
+    }
+    
+    public long getDonGia(){
+        return DonGia;
+    }
+    public void setDonGia(long price){
+        DonGia = price;
+    }
+    
     
     @ManyToOne
     @MapsId("MaDH")

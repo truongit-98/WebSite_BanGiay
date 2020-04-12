@@ -24,6 +24,6 @@ public class Customer {
     private String SDT;
     private String MatKhau;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    private Set<Order> listOrder = new HashSet<>();
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+//    private Set<Order> listOrder = new HashSet<>();
 }

@@ -17,4 +17,20 @@ public class OrderProductKey  implements Serializable{
  
     @Column(name = "MaSP")
     int masp;
+    
+    public int getMasp() {
+        return masp;
+    }
+
+    public void setMasp(int masp) {
+        masp = masp;
+    }
+    
+    public int getMadh() {
+        return madh;
+    }
+
+    public void setMadh(int madh) {
+        madh = madh;
+    }
 }

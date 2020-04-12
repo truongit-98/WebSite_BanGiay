@@ -18,12 +18,12 @@ public class Color {
     private int MaMau;
     private String Color;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "color")
-    private Set<BillImportDetail> listBillImportDetail = new HashSet<>();
-    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "color")
-    private Set<OrderDetail> listOrderDetail = new HashSet<>();
-    
-    @OneToMany(mappedBy = "color")
-    Set<ProductDetail> listProductDetail;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "color")
+//    private Set<BillImportDetail> listBillImportDetail = new HashSet<>();
+//    
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "color")
+//    private Set<OrderDetail> listOrderDetail = new HashSet<>();
+//    
+//    @OneToMany(mappedBy = "color")
+//    Set<ProductDetail> listProductDetail;
 }

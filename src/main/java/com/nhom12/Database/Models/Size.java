@@ -15,15 +15,29 @@ import javax.persistence.*;
 @Table(name="size")
 public class Size {
     @Id
-    private int MaSize;
-    private int Size;
+    private int masize;
+    @Column(name = "Size")
+    private int size;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "size")
-    private Set<BillImportDetail> listBillImportDetail = new HashSet<>();
+    public int getMasp(){
+        return masize;
+    }
+    public void setMasp(int masize){
+        masize = masize;
+    }
+    public int getSize(){
+        return size;
+    }
+    public void setSize(int size){
+        size = size;
+    }
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "size")
+//    private Set<BillImportDetail> listBillImportDetail = new HashSet<>();
+//    
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "size")
+//    private Set<OrderDetail> listOrderDetail = new HashSet<>();
+//    
+//    @OneToMany(mappedBy = "size")
+//    Set<ProductDetail> listProductDetail;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "size")
-    private Set<OrderDetail> listOrderDetail = new HashSet<>();
-    
-    @OneToMany(mappedBy = "size")
-    Set<ProductDetail> listProductDetail;
 }

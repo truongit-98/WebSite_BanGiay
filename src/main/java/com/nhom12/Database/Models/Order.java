@@ -29,8 +29,8 @@ public class Order {
     private String Email;
     private String SDT;
     
-    @OneToMany(mappedBy = "order")
-    Set<OrderDetail> listOrderDetail;
+//    @OneToMany(mappedBy = "order")
+//    Set<OrderDetail> listOrderDetail;
     
     @ManyToOne
     @JoinColumn(name = "MaKH")

@@ -34,8 +34,21 @@ public class HibernateUtil {
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
                 settings.put(Environment.HBM2DDL_AUTO, "create-drop");
                 configuration.setProperties(settings);
+                configuration.addAnnotatedClass(BillImport.class);
+                configuration.addAnnotatedClass(BillImportDetail.class);
+                configuration.addAnnotatedClass(BillImportProductKey.class);
+                configuration.addAnnotatedClass(Color.class);
+                configuration.addAnnotatedClass(Customer.class);
+                configuration.addAnnotatedClass(Order.class);    
+                configuration.addAnnotatedClass(OrderDetail.class);    
+                configuration.addAnnotatedClass(OrderProductKey.class);
                 configuration.addAnnotatedClass(Product.class);
+                configuration.addAnnotatedClass(ProductDetail.class);
+                configuration.addAnnotatedClass(ProductDetailKey.class);
                 configuration.addAnnotatedClass(Producer.class);
+                configuration.addAnnotatedClass(Size.class);
+                configuration.addAnnotatedClass(Staff.class);
+                configuration.addAnnotatedClass(Supplier.class);
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
 //                Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();

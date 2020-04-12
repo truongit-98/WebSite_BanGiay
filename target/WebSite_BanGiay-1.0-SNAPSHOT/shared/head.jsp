@@ -68,7 +68,7 @@
     <script src="<c:url value="/resources/js/jquery.stellar.min.js"/>"></script>
     <!-- Main -->
     <script src="<c:url value="/resources/js/main.js"/>"></script>
-    <script src="<c:url value="/resources/js/myjs.js"/>"></script>
+   
 
 
 </head>

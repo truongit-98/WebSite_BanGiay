@@ -13,10 +13,12 @@
                     <div id="colorlib-logo"><a href="">Footwear</a></div>
                 </div>
                 <div class="col-sm-5 col-md-3">
-                    <div class="form-group">
+                    <form class="search-wrap">
+                         <div class="form-group">
                         <input type="text" name="txtSearch" class="form-control search" placeholder="Search">
                         <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
                     </div>
+                    </form>
                 </div>
             </div>
             <div class="row">

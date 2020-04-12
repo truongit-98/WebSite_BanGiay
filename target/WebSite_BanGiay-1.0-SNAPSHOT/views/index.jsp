@@ -122,28 +122,8 @@
                 });
                 $('.slider-text').addClass('animated fadeInUp');
             });
-            $('#cart-id').click(function (e) {
-                debugger
-                e.preventDefault();
-                var productId = $(this).data('id');
-                $.ajax({
-                    url: 'http://localhost:8080/WebSite_BanGiay/cart',
-                    data: {productId: productId},
-                    dataType: 'json',
-                    type: 'POST',
-                    success: function (res) {
-                        if (res.status == true) {
-                            alert("ok");
-                            //$('.add-to-cart-success').show();
-                            var element = parseInt(document.querySelector('#cart-quantity').textContent);
-                            element = element + 1;
-                            document.querySelector('#cart-quantity').innerHTML = element;
-                        } else {
-                            alert("fail");
-                        }
-                    }
-                });
-            });
-        </script>            
+
+        </script>     
+        <script src="<c:url value="/resources/js/myjs.js"/>"></script>
     </body>
 </html>

@@ -24,8 +24,8 @@ public class BillImport {
     private double TongTien;
     private String TinhTrang;
     
-    @OneToMany(mappedBy = "billImport")
-    Set<BillImportDetail> listBillImportDetail;
+//    @OneToMany(mappedBy = "billImport")
+//    Set<BillImportDetail> listBillImportDetail;
     
     @ManyToOne
     @JoinColumn(name = "MaNCC")

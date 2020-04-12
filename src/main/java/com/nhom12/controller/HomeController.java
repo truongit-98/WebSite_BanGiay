@@ -30,16 +30,7 @@ public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView homePage(Model model) {
-//        ModelAndView mav = new ModelAndView("index");
-//        try {
-//            ProductDao productDao = new ProductDao();
-//            List<Product> products = productDao.getAllProducts();
-//            model.addAttribute("products", products);
-//        } catch (Exception ex) {
-//            session.getTransaction().rollback();
-//            throw ex;
-//
-//        }
+
         ModelAndView mav = new ModelAndView("index");
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getAllProducts();

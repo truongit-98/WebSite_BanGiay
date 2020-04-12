@@ -21,7 +21,7 @@ public class BillImport {
     private Date NgayNhap;
     private double TongTien;
     private String TinhTrang;
-    
+
     public int getMaPN(){
         return MaPN;
     }
@@ -51,6 +51,7 @@ public class BillImport {
     }
     @OneToMany(mappedBy = "billImport")
     Set<BillImportDetail> listBillImportDetail;
+
     
     @ManyToOne
     @JoinColumn(name = "MaNCC")

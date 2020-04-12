@@ -70,4 +70,5 @@ public class Customer {
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private Set<Order> listOrder = new HashSet<>();
+
 }

@@ -40,4 +40,5 @@ public class Color {
     
     @OneToMany(mappedBy = "color")
     Set<ProductDetail> listProductDetail;
+
 }

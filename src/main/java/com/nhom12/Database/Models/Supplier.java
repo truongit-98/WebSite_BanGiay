@@ -15,12 +15,48 @@ import javax.persistence.*;
 @Table(name="ncc")
 public class Supplier {
     @Id
-    private int MaNCC;
-    private String TenNCC;
-    private String DiaChi;
-    private String Email;
-    private String Sdt;
+    private int mancc;
+    @Column(name = "TenNCC")
+    private String tenncc;
+    @Column(name = "DiaChi")
+    private String diachi;
+    @Column(name = "Email")
+    private String email;
+    @Column(name = "Sdt")
+    private String sdt;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier")
-    private Set<BillImport> listBillImport = new HashSet<>();
+    public int getMancc() {
+        return mancc;
+    }
+
+    public void setMancc(int mancc) {
+        mancc = mancc;
+    }
+
+    public String getTenncc() {
+        return tenncc;
+    }
+
+    public void setTenncc(String tenncc) {
+        tenncc = tenncc;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        email = email;
+    }
+    
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        sdt = sdt;
+    }
+    
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier")
+//    private Set<BillImport> listBillImport = new HashSet<>();
 }

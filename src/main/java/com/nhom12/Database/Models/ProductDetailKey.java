@@ -20,4 +20,28 @@ public class ProductDetailKey implements Serializable{
     
     @Column(name = "MaMau")
     int mamau;
+    
+    public int getMasp() {
+        return masp;
+    }
+
+    public void setMasp(int masp) {
+        masp = masp;
+    }
+    
+    public int getMasize() {
+        return masize;
+    }
+
+    public void setMasize(int masize) {
+        masize = masize;
+    }
+    
+    public int getMamau() {
+        return mamau;
+    }
+
+    public void setMamau(int mamau) {
+        mamau = mamau;
+    }
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
@@ -29,21 +30,13 @@ public class ProductDao {
     }
 
     public List<Product> getAllProducts() {
-        //SessionFactory factory;
-        //Session session;
-        List<Product> products = new ArrayList<Product>();
-        try {
-
-            ///factory = HibernateUtil.getSessionFactory();
-            //session = factory.getCurrentSession();
+        List<Product> products = new ArrayList<>();
+        try {      
             session.getTransaction().begin();
 
-            String sql = "from Product";
-            Query query = session.createQuery(sql);
+            String hql = "from Product";
+            Query query = session.createQuery(hql);
             products = (List<Product>)query.list();
-//            for(Product p: product1s){
-//                products.add((Product)p);
-//            }
             session.getTransaction().commit();
 
         } catch (Exception ex) {
@@ -52,5 +45,22 @@ public class ProductDao {
            
         } 
         return products;
+    }
+    
+    public Product getProduct(int id){
+        Product product = null;
+        try{
+            session.getTransaction().begin();
+            
+            String hql = "select p from Product p where p.masp=:uid";
+            Query query = session.createQuery(hql);
+            query.setParameter("uid", id);
+            product = (Product)query.uniqueResult();
+            session.getTransaction().commit();
+        } catch (Exception ex){
+            session.getTransaction().rollback();
+            throw ex;
+        }
+        return product;
     }
 }

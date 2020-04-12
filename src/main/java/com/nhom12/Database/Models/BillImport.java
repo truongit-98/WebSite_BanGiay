@@ -19,11 +19,36 @@ public class BillImport {
     @Id
     private int MaPN;
     private Date NgayNhap;
-    private int MaNV;
-    private int MaNCC;
     private double TongTien;
     private String TinhTrang;
     
+    public int getMaPN(){
+        return MaPN;
+    }
+    public void setMaPN(int ma){
+        MaPN = ma;
+    }
+    
+    public Date getNgayNhap(){
+        return NgayNhap;
+    }    
+    public void setNgayNhap(Date date){
+        NgayNhap = date;
+    }
+    
+    public double getTongTien(){
+        return TongTien;
+    }
+    public void setTongTien(double total){
+        TongTien = total;
+    }
+    
+    public String getTinhTrang(){
+        return TinhTrang;
+    }
+    public void setTinhTrang(String tinhtrang){
+        TinhTrang = tinhtrang;
+    }
     @OneToMany(mappedBy = "billImport")
     Set<BillImportDetail> listBillImportDetail;
     

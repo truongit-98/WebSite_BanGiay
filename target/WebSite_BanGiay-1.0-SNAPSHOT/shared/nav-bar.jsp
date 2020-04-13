@@ -34,7 +34,7 @@
                         <li><a href="">Women</a></li>
                         <li><a href="">About</a></li>
                         <li><a href="">Contact</a></li>
-                        <li class="cart" style="font-size: 18px;"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [<span id="cart-quantity">0</span>]</a></li>
+                        <li class="cart" style="font-size: 18px;"><a href="/WebSite_BanGiay/cart"><i class="icon-shopping-cart"></i> Cart [<span id="cart-quantity">0</span>]</a></li>
 
                     </ul>
                 </div>

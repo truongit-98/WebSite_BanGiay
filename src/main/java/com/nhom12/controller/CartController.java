@@ -5,6 +5,9 @@
  */
 package com.nhom12.controller;
 
+import com.google.gson.Gson;
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
 import java.util.Collections;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +20,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.nhom12.Database.dao.ProductDao;
 import com.nhom12.Database.Models.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -30,51 +36,93 @@ public class CartController {
 
     private static String cartSession = "cartSession";
 
-    @RequestMapping(value = "/cart", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/cart", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView index(Model model, HttpSession session) {
+        ModelAndView mav = new ModelAndView("cart");
+        List<CartModel> cartModels = (List<CartModel>) session.getAttribute(cartSession);
+        if (cartModels == null) {
+            return new ModelAndView("redirect:/home");
+        }
+        model.addAttribute("cartModels", cartModels);
+        return mav;
+    }
+
+    @RequestMapping(value = "/cart/addItemByAjax", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Map addProduct(HttpServletRequest request, HttpSession session) {
-        String idParam = request.getParameter("productId");
 
+        Type type = new TypeToken<CartModel>() {
+        }.getType();
+        CartModel cartModelJson = new Gson().fromJson(request.getParameter("cartModel"), type);
         ProductDao dao = new ProductDao();
+        Map map = new HashMap();
         try {
-           Product product = dao.getProduct(Integer.parseInt(idParam));
+            Product product = dao.getProduct(cartModelJson.getProductId());
             if (product != null) {
                 List<CartModel> carts = (List<CartModel>) session.getAttribute(cartSession);
-
                 if (carts != null) {
                     int index = CartModel.findIndex(carts, product.getMasp());
                     if (index > -1) {
-                        carts.get(index).setQuantity(carts.get(index).getQuantity() + 1);
+                        carts.get(index).setQuantity(carts.get(index).getQuantity() + cartModelJson.getQuantity());
+                        map.put("quantity", cartModelJson.getQuantity());
                     } else {
                         CartModel cartModel = new CartModel();
+
                         cartModel.setProductId(product.getMasp());
                         cartModel.setProductName(product.getTensp());
                         cartModel.setPrice(product.getDongia());
                         cartModel.setUrlImg(product.getAnh());
-                        cartModel.setQuantity(1);
+                        cartModel.setQuantity(cartModelJson.getQuantity());
+
                         carts.add(cartModel);
+                        map.put("quantity", cartModelJson.getQuantity());
                     }
 
                 } else {
                     carts = new ArrayList<>();
                     CartModel cartModel = new CartModel();
+
                     cartModel.setProductId(product.getMasp());
                     cartModel.setProductName(product.getTensp());
                     cartModel.setPrice(product.getDongia());
                     cartModel.setUrlImg(product.getAnh());
-                    cartModel.setQuantity(1);
+                    cartModel.setQuantity(cartModelJson.getQuantity());
+
                     carts.add(cartModel);
+                    map.put("quantity", cartModelJson.getQuantity());
 
                 }
                 session.setAttribute(cartSession, carts);
-                return Collections.singletonMap("status", true);
+                map.put("status", true);
+                return map;
             }
-            return Collections.singletonMap("statue", false);
-        } catch (NumberFormatException ex) {
-             ex.printStackTrace();
-            return Collections.singletonMap("statue", false);
+            return Collections.singletonMap("status", false);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return Collections.singletonMap("status", false);
 
         }
     }
 
+    @RequestMapping(value = "/cart/updateCartItem", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Map updateCart(HttpServletRequest request, HttpSession session) {
+        try {
+            Type type = new TypeToken<CartModel>() {
+            }.getType();
+            CartModel cartModelJson = new Gson().fromJson(request.getParameter("cartModel"), type);
+            List<CartModel> cartModels = (List<CartModel>) session.getAttribute(cartSession);
+            for (CartModel m : cartModels) {
+                if (m.getProductId() == cartModelJson.getProductId()) {
+                    m.setQuantity(cartModelJson.getQuantity());
+                    session.setAttribute(cartSession, cartModels);
+                    return Collections.singletonMap("status", true);
+                }
+            }
+            return Collections.singletonMap("status", false);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return Collections.singletonMap("status", false);
+        }
+    }
 }

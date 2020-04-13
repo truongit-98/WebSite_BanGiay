@@ -20,7 +20,8 @@ import com.nhom12.Database.Models.Product;
 import org.hibernate.query.Query;
 import org.springframework.ui.Model;
 import com.nhom12.Database.dao.ProductDao;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import java.sql.Statement;
 
 import java.util.List;
@@ -30,21 +31,20 @@ public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView homePage(Model model) {
-//        ModelAndView mav = new ModelAndView("index");
-//        try {
-//            ProductDao productDao = new ProductDao();
-//            List<Product> products = productDao.getAllProducts();
-//            model.addAttribute("products", products);
-//        } catch (Exception ex) {
-//            session.getTransaction().rollback();
-//            throw ex;
-//
-//        }
         ModelAndView mav = new ModelAndView("index");
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getAllProducts();
         model.addAttribute("products", products);
         return mav;
     }
-
+    
+//    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping("/home/{productID}")
+    public ModelAndView productDetail(@PathVariable int productID , Model model) {
+        ModelAndView mav = new ModelAndView("productDetail");
+        ProductDao productDao = new ProductDao();
+        Product product = productDao.getProduct(productID);
+        model.addAttribute("product", product);
+        return mav;
+    }
 }

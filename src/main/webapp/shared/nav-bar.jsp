@@ -13,9 +13,9 @@
                     <div id="colorlib-logo"><a href="">Footwear</a></div>
                 </div>
                 <div class="col-sm-5 col-md-3">
-                    <form class="search-wrap">
+                    <form action="/WebSite_BanGiay/home/search" class="search-wrap">
                          <div class="form-group">
-                        <input type="text" name="txtSearch" class="form-control search" placeholder="Search">
+                        <input type="text" name="txtSearch" value="${valSearch}" class="form-control search" placeholder="Tìm kiếm">
                         <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
                     </div>
                     </form>

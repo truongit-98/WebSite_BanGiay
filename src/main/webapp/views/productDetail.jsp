@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,8 +54,8 @@
                         <div class="product-desc" >
                             <h3>${product.tensp}</h3>
                             <p class="price">
-                            <p><fmt:formatNumber pattern="#,##0" value = "${product.dongia}" /></p>
-                            <div>Giá: ${product.dongia}</div>
+                            
+                            <div>Giá: <span><fmt:formatNumber pattern="#,##0" value = "${product.dongia}" />đ</span></div>
                             </p>
                             <span class="rate">
                                 <c:if test="${product.soluongtong == 0}">

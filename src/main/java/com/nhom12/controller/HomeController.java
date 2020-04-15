@@ -22,6 +22,8 @@ import org.springframework.ui.Model;
 import com.nhom12.Database.dao.ProductDao;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import java.sql.Statement;
 
 import java.util.List;
@@ -30,21 +32,57 @@ import java.util.List;
 public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView homePage(Model model) {
+    public ModelAndView homePage(@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+        if (page < 0) {
+            page = 1;
+        }
         ModelAndView mav = new ModelAndView("index");
         ProductDao productDao = new ProductDao();
-        List<Product> products = productDao.getAllProducts();
+        List<Product> products = productDao.getAllProducts(page - 1);
+        long total = productDao.getAmountProducts("");
+        long pageMax = total / 10;
+        if (total % 10 != 0) {
+            pageMax += 1;
+        }
         model.addAttribute("products", products);
+        model.addAttribute("valSearch", "");
+        model.addAttribute("isSearch", 0);
+        model.addAttribute("page", page);
+        model.addAttribute("pageMax", pageMax);
         return mav;
     }
-    
-//    @RequestMapping(value = "/home", method = RequestMethod.GET)
+
     @RequestMapping("/home/{productID}")
-    public ModelAndView productDetail(@PathVariable int productID , Model model) {
+    public ModelAndView productDetail(@PathVariable int productID, Model model) {
         ModelAndView mav = new ModelAndView("productDetail");
         ProductDao productDao = new ProductDao();
         Product product = productDao.getProduct(productID);
         model.addAttribute("product", product);
+        return mav;
+    }
+
+    @RequestMapping(value = "/home/search", method = RequestMethod.GET, params = "txtSearch")
+    @ResponseBody
+    public ModelAndView getProductsSearch(@RequestParam String txtSearch, @RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+        if (page < 0) {
+            page = 1;
+        }
+        if (txtSearch.trim() == "") {
+            return new ModelAndView("redirect:http://localhost:8080/WebSite_BanGiay/home?page=" + page);
+        }
+        ModelAndView mav = new ModelAndView("index");
+        ProductDao productDao = new ProductDao();
+        List<Product> products = productDao.getProductsByKey(txtSearch, page - 1);
+        long total = productDao.getAmountProducts(txtSearch);
+        long pageMax = total / 10;
+        if (total % 10 != 0) {
+            pageMax += 1;
+        }
+        model.addAttribute("products", products);
+        model.addAttribute("valSearch", txtSearch);
+        model.addAttribute("isSearch", 1);
+        model.addAttribute("page", page);
+        model.addAttribute("pageMax", pageMax);
         return mav;
     }
 }

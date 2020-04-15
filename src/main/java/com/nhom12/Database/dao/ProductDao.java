@@ -24,43 +24,96 @@ public class ProductDao {
 
     private SessionFactory factory;
     private Session session;
+
     public ProductDao() {
-          factory = HibernateUtil.getSessionFactory();
-          session = factory.getCurrentSession();
+        factory = HibernateUtil.getSessionFactory();
+//        session = factory.getCurrentSession();
     }
 
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProducts(int page) {
         List<Product> products = new ArrayList<>();
-        try {      
+        try {
+            session = factory.getCurrentSession();
             session.getTransaction().begin();
 
             String hql = "from Product";
             Query query = session.createQuery(hql);
-            products = (List<Product>)query.list();
+            query.setFirstResult(10 * page);
+            query.setMaxResults(10);
+//            String hql = "select * from sanpham ";
+//            Query query = session.createSQLQuery(hql);
+            products = (List<Product>) query.list();
             session.getTransaction().commit();
 
         } catch (Exception ex) {
-             session.getTransaction().rollback();
+            session.getTransaction().rollback();
             throw ex;
-           
-        } 
+
+        }
+        session.close();
         return products;
     }
-    
-    public Product getProduct(int id){
-        Product product = null;
-        try{
+
+    public long getAmountProducts(String key) {
+        long amount;
+        try {
+            session = factory.getCurrentSession();
             session.getTransaction().begin();
-            
+
+            String hql = "select count(e) from Product e where tensp like '%" + key + "%'";
+//            String hql = "select count(e) from Product e ";
+            Query query = session.createQuery(hql);
+            amount = (long) query.uniqueResult();
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+            throw ex;
+
+        }
+        session.close();
+        return amount;
+    }
+
+    public Product getProduct(int id) {
+        Product product = null;
+        try {
+            session = factory.getCurrentSession();
+            session.getTransaction().begin();
+
             String hql = "select p from Product p where p.masp=:uid";
             Query query = session.createQuery(hql);
             query.setParameter("uid", id);
-            product = (Product)query.uniqueResult();
-            session.getTransaction().commit();
-        } catch (Exception ex){
+            product = (Product) query.uniqueResult();
+//            session.getTransaction().commit();
+        } catch (Exception ex) {
             session.getTransaction().rollback();
             throw ex;
         }
+        session.close();
         return product;
+    }
+
+    public List<Product> getProductsByKey(String key, int page) {
+        List<Product> products = new ArrayList<>();
+        try {
+            session = factory.getCurrentSession();
+            session.getTransaction().begin();
+            String hql = "select p from Product p where tensp like '%" + key + "%'";
+//            String hql = "select p from Product p where tensp like '%:ukey%'";
+            Query query = session.createQuery(hql);
+            query.setFirstResult(10 * page);
+            query.setMaxResults(10);
+//            query.setParameter("ukey", key);
+            products = (List<Product>) query.list();
+
+//            session.getTransaction().commit();
+        } catch (Exception ex) {
+
+            session.getTransaction().rollback();
+            throw ex;
+
+        }
+        session.close();
+        return products;
     }
 }

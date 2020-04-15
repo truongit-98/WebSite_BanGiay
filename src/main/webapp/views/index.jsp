@@ -6,6 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -84,35 +87,95 @@
 
 
             <div class="colorlib-product">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
-                            <h2>New Products</h2>
+                <c:if test="${fn:length(products)>0}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                                <h2>New Products</h2>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row row-pb-md">
-                        <c:forEach items="${products}"  var="item" >
-                            <div class="col-lg-3 mb-4 text-center">
-                                <div class="product-entry border">
-                                    <!--<div style="background-color: #686b6b1c;">-->
-                                        <a href="home/${item.masp}" class="prod-img" style="height: 230px; display: flex; align-items: center;overflow: hidden;">
+
+                        <div class="row row-pb-md">
+                            <c:forEach items="${products}"  var="item" >
+                                <div class="col-lg-3 mb-4 text-center">
+                                    <div class="product-entry border">
+                                        <!--<div style="background-color: #686b6b1c;">-->
+                                        <a href="/WebSite_BanGiay/home/${item.masp}" class="prod-img" style="height: 230px; display: flex; align-items: center;overflow: hidden;">
                                             <img src="<c:url value="/resources/images/${item.anh}"/>" class="img-fluid" alt="${item.anh}">
                                         </a>
-                                    <!--</div>-->
-                                    <div class="desc">
-                                        <h2><a href="home/${item.masp}">${item.tensp}</a></h2>
-                                        <i class="icon-shopping-cart cart-hover" data-id="${item.masp}" id="cart-id"></i><span class="price">${item.dongia}</span>
+                                        <!--</div>-->
+                                        <div class="desc">
+                                            <h2 style="height: 90px;"><a href="/WebSite_BanGiay/home/${item.masp}">${item.tensp}</a></h2>
+                                            <div style="height:24px"><i class="icon-shopping-cart cart-hover" data-id="${item.masp}" id="cart-id"></i></div>
+                                            <span class="price"><fmt:formatNumber type = "number" 
+                                                              maxFractionDigits = "3" value = "${item.dongia}" />đ</span>
+                                        </div>
                                     </div>
                                 </div>
+                            </c:forEach>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <!--<p><a href="" class="btn btn-primary btn-lg">Shop All Products</a></p>-->
+
+                                <div style="display:flex;justify-content: center;">
+                                    <div style="width:130px">
+                                        <c:if test="${page > 1 }">
+
+                                            <c:if test="${isSearch == 0}">
+                                                <a href="/WebSite_BanGiay/home?page=1" class="mr-3" >Trang đầu</a>
+                                                <a href="/WebSite_BanGiay/home?page=${page-1}" class="mr-2" ><<</a>
+                                            </c:if>
+                                            <c:if test="${isSearch == 1}">
+                                                <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=1" class="mr-3" >Trang đầu</a>
+                                                <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${page-1}" class="mr-2" ><<</a>
+                                            </c:if>
+                                        </c:if>
+                                    </div>
+
+
+                                    <c:forEach var="i" begin="1" end="${pageMax}" step="1">
+                                        <c:if test="${page == i}">
+                                            <div style="background-color: #82777759;width: 30px;height: 26px;border: 1px solid;margin-right: 4px;">${i}</div>
+                                        </c:if>
+                                        <c:if test="${page != i}">
+
+                                            <c:if test="${isSearch == 0}">
+                                                <a href="/WebSite_BanGiay/home?page=${i}"  style="width: 30px;height: 26px;border: 1px solid;margin-right: 4px;">${i}</a>
+                                            </c:if>
+                                            <c:if test="${isSearch == 1}">
+                                                <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${i}"  style="width: 30px;height: 26px;border: 1px solid;margin-right: 4px;">${i}</a>
+                                            </c:if>
+                                        </c:if>
+                                    </c:forEach>
+                                    <div style="width:130px">
+                                        <c:if test="${page < pageMax}">
+
+                                            <c:if test="${isSearch == 0}">
+                                                <a href="home?page=${page+1}" class="mr-3 ml-1" >>></a>
+                                                <a href="home?page=${pageMax}" class="mr-3" >Trang cuối</a>
+                                            </c:if>
+                                            <c:if test="${isSearch == 1}">
+                                                <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${page+1}" class="mr-3 ml-1" >>></a>
+                                                <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${pageMax}" class="mr-3" >Trang cuối</a>
+                                            </c:if>
+                                        </c:if>
+                                    </div>
+
+                                </div>
+
                             </div>
-                        </c:forEach>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <p><a href="" class="btn btn-primary btn-lg">Shop All Products</a></p>
                         </div>
                     </div>
-                </div>
+                </c:if>
+
+
+                <c:if test="${fn:length(products)==0}">
+                    <div class="container" style="align-items: center;display: flex;justify-content: center;height: 400px;font-size: 35px;font-weight: 700;">
+                        Không có dữ liệu!
+                    </div>
+                </c:if>
+
             </div> 
             <%@include file="/shared/partner.jsp" %>
             <%@include file="/shared/footer.jsp" %>

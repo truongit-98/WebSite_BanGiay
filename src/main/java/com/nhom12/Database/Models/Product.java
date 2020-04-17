@@ -39,14 +39,9 @@ public class Product implements Serializable {
     public Product(){
         
     }
-//    @OneToMany(mappedBy = "product")
-//    Set<BillImportDetail> listBillImportDetail;
-//    
-//    @OneToMany(mappedBy = "product")
-//    Set<OrderDetail> listOrderDetail;
-//    
-//    @OneToMany(mappedBy = "product")
-//    Set<ProductDetail> listProductDetail;
+   
+    @OneToMany(mappedBy = "product")
+    Set<OrderDetail> listOrderDetail;
     
     @ManyToOne
     @JoinColumn(name = "mansx")

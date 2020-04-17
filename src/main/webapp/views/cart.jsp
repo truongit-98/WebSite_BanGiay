@@ -6,7 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@page import="com.nhom12.Database.Models.CartModel" %>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,14 +15,27 @@
         <%@include file="/shared/head.jsp"%>
     </head>
     <body>
-        <div id="page">
-            <%@include file="/shared/nav-bar.jsp" %>
+        <style>
+            .addcart {
+                background: #616161;
+                border-radius: 5px;
+                box-shadow: none;
+                border: none;
+                color: #FFF;
+                cursor: pointer;
+                padding: 8px 20px;
+            }
 
+            .addcart:hover {
+                background: black;
+            }
+        </style>
+        <div id="page">
+            <%@include file="/shared/nav-bar.jsp" %>   
             <div class="breadcrumbs">
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <p class="bread"><span><a href="index.html">Home</a></span> / <span>Shopping Cart</span></p>
                         </div>
                     </div>
                 </div>
@@ -75,32 +89,22 @@
                                 </div>
                                 <div class="one-eight text-center">
                                     <div class="display-tc">
-                                        <span>$<span class="price">${item.price}<span>.00</span></span></span>
+                                        <span><span class="price">${item.price}<span>VND</span></span></span>
                                     </div>
                                 </div>
                                 <div class="one-eight text-center" s>
                                     <div class="display-tc" >
-                                        <span class="input-group-btn ">
-                                            <button type="button" class="quantity-left-minus btn btn-number" data-type="minus" data-field="quantity">
-                                                <i class="icon-minus2"></i>
-                                            </button>
-                                        </span>
-                                       <input type="text" id="quantity" name="quantity" class="form-control input-number text-center" value="1" min="1" max="100">
-                                        <span class="input-group-btn ml-1">
-                                            <button type="button" class="quantity-right-plus btn btn-number" data-type="plus" data-field="quantity">
-                                                <i class="icon-plus2"></i>
-                                            </button>
-                                        </span>
+                                        <input type="number" class="quantity-cart" name="quantity" data-id="${item.productId}" class="form-control input-number text-center" value="${item.quantity}" min="1" max="100">
                                     </div>
                                 </div> 
                                 <div class="one-eight text-center">
                                     <div class="display-tc">
-                                        <span>$<span class="totals">${item.price * item.quantity}<span>.00</span></span></span>
+                                        <span><span class="totals">${item.price * item.quantity}<span>VND</span></span></span>
                                     </div>
                                 </div>                           
                                 <div class="one-eight text-center">
                                     <div class="display-tc">
-                                        <a href="#" class="closed"></a>
+                                        <a href="#" class="closed" data-id="${item.productId}"></a>
                                     </div>
                                 </div>
                             </div>
@@ -128,12 +132,23 @@
                                 <div class="col-sm-4 text-center">
                                     <div class="total">
                                         <div class="sub">
-                                            <p><span>Subtotal:</span> <span class="sub-totals">$200.00</span></p>
-                                            <p><span>Delivery:</span> <span>$0.00</span></p>
-                                            <p><span>Discount:</span> <span>$45.00</span></p>
+                                            <%                                                List<CartModel> carts = (List<CartModel>) session.getAttribute("cartSession");
+                                                long totalCart = 0;
+                                                for (CartModel c : carts) {
+                                                    totalCart += c.getPrice() * c.getQuantity();
+                                                }
+                                            %>
+                                            <p><span>Subtotal:</span> <span class="sub-totals"><%=totalCart + "VND"%></span></p>
+                                            <p><span>Delivery:</span> <span>0</span></p>
+                                            <p><span>Discount:</span> <span>0</span></p>
                                         </div>
                                         <div class="grand-total">
-                                            <p><span><strong>Total:</strong></span> <span class="cart-totals">$450.00</span></p>
+                                            <p><span><strong>Total:</strong></span> <span class="cart-totals"><%=totalCart + "VND"%></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 center">
+                                            <a href ="/WebSite_BanGiay/customer/checkout" class="btn btn-primary">Đặt hàng</a>
                                         </div>
                                     </div>
                                 </div>

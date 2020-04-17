@@ -15,8 +15,6 @@
         <%@include file="/shared/head.jsp" %>
     </head>
     <body>
-        <c:set var="context" value="${pageContext.request.contextPath}" />
-
         <div id="page">
             <%@include file="/shared/nav-bar.jsp" %>
             <aside id="colorlib-hero">
@@ -110,6 +108,7 @@
                                             <span class="price"><fmt:formatNumber type = "number" 
                                                               maxFractionDigits = "3" value = "${item.dongia}" />đ</span>
                                         </div>
+
                                     </div>
                                 </div>
                             </c:forEach>

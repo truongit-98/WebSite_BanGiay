@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.nhom12.Database.Models;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="nsx")
-public class Producer {
+public class Producer implements Serializable {
     @Id
     private int mansx;
     @Column(name = "TenNSX")
@@ -22,9 +23,9 @@ public class Producer {
     private String diachi;
     @Column(name = "Email")
     private String email;
-//    @Column(name = "Sdt")
-//    private String sdt;
-    // vì ko có hàm get, nên nó lỗi thử mà xem, nãy t cũng bị lỗi tương tự ô thên xem nào
+    @Column(name = "Sdt")
+    private String sdt;
+   
     public int getMansx(){
         return mansx;
     }
@@ -50,15 +51,20 @@ public class Producer {
     public void setEmail(String str){
         email = str;
     }
+    public String getSdt(){
+        return sdt;
+    }
+    public void setSdt(String sdt){
+        this.sdt = sdt;
+    }
    
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "producer")
-//    private Set<Product> listProduct = new HashSet<>();
-//    public Set<Product> getListProduct(){ 
-//        return listProduct;
-//    }
-//    public void setListProduct(Set<Product> sets){
-//        listProduct=sets;
-//    }
-    //k cần cái này luôn @@, ừm cũng đc cơ mà đổi đường dẫn ảnh đí đổi tên trong source là đc mà
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "producer")
+    private Set<Product> listProduct = new HashSet<>();
+    public Set<Product> getListProduct(){ 
+        return listProduct;
+    }
+    public void setListProduct(Set<Product> sets){
+        listProduct=sets;
+    }
     
 }

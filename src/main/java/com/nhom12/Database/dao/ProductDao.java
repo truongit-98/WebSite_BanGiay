@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 /**
  *
@@ -27,7 +28,6 @@ public class ProductDao {
 
     public ProductDao() {
         factory = HibernateUtil.getSessionFactory();
-//        session = factory.getCurrentSession();
     }
 
     public List<Product> getAllProducts(int page) {
@@ -40,8 +40,6 @@ public class ProductDao {
             Query query = session.createQuery(hql);
             query.setFirstResult(10 * page);
             query.setMaxResults(10);
-//            String hql = "select * from sanpham ";
-//            Query query = session.createSQLQuery(hql);
             products = (List<Product>) query.list();
             session.getTransaction().commit();
 
@@ -73,6 +71,9 @@ public class ProductDao {
         session.close();
         return amount;
     }
+        return products;
+    }
+
 
     public Product getProduct(int id) {
         Product product = null;
@@ -84,7 +85,7 @@ public class ProductDao {
             Query query = session.createQuery(hql);
             query.setParameter("uid", id);
             product = (Product) query.uniqueResult();
-//            session.getTransaction().commit();
+            session.getTransaction().commit();
         } catch (Exception ex) {
             session.getTransaction().rollback();
             throw ex;

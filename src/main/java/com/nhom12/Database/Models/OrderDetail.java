@@ -4,35 +4,34 @@
  * and open the template in the editor.
  */
 package com.nhom12.Database.Models;
+import java.io.Serializable;
 import javax.persistence.*;
 /**
  *
  * @author ThongPVT
  */
 @Entity
-@Table(name="chitiethoadon")
-public class OrderDetail {
-//    @Id
-//    private int MaDH;
-//    @Id
-//    private int MaSP;
+@Table(name="chitiethd")
+public class OrderDetail implements Serializable {
+
     @EmbeddedId
     OrderProductKey id;
-    private int SoLuong;
-    private long DonGia;
-  
-    public int getSoLuong(){
-        return SoLuong;
+    private int soluong;
+    private long gia;
+    
+    
+    public int getSoluong(){
+        return soluong;
     }
-    public void setSoLuong(int soLuong){
-        SoLuong = soLuong;
+    public void setSoluong(int soLuong){
+        this.soluong = soLuong;
     }
     
-    public long getDonGia(){
-        return DonGia;
+    public long getGia(){
+        return gia;
     }
-    public void setDonGia(long price){
-        DonGia = price;
+    public void setGia(long price){
+        gia = price;
     }
     
     
@@ -44,29 +43,6 @@ public class OrderDetail {
     @ManyToOne
     @MapsId("MaSP")
     @JoinColumn(name = "MaSP")
-    Product product;
+    Product product;   
     
-    @ManyToOne
-    @JoinColumn(name = "MaMau")
-    private Color color;
-
-    public Color getColor() {
-            return color;
-    }
-
-    public void setColor(Color color) {
-            this.color = color;
-    }
-    
-    @ManyToOne
-    @JoinColumn(name = "MaSize")
-    private Size size;
-
-    public Size getSize() {
-            return size;
-    }
-
-    public void setSize(Size size) {
-            this.size = size;
-    }
 }

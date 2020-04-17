@@ -5,6 +5,7 @@
  */
 package com.nhom12.Database.Models;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -16,7 +17,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "nhanvien")
-public class Staff {
+public class Staff implements Serializable {
 
     @Id
     private int manv;
@@ -44,7 +45,7 @@ public class Staff {
     }
 
     public void setManv(int manv) {
-        manv = manv;
+        this.manv = manv;
     }
 
     public String getTennv() {
@@ -52,7 +53,7 @@ public class Staff {
     }
 
     public void setTennv(String tennv) {
-        tennv = tennv;
+        this.tennv = tennv;
     }
 
     public String getDiaChi() {
@@ -60,7 +61,7 @@ public class Staff {
     }
 
     public void setDiaChi(String diachi) {
-        diachi = diachi;
+        this.diachi = diachi;
     }
 
     public String getEmail() {
@@ -68,7 +69,7 @@ public class Staff {
     }
 
     public void setEmail(String email) {
-        email = email;
+        this.email = email;
     }
 
     public String getSdt() {
@@ -76,7 +77,7 @@ public class Staff {
     }
 
     public void setSdt(String sdt) {
-        sdt = sdt;
+        this.sdt = sdt;
     }
 
     public String getGioiTinh() {
@@ -84,7 +85,7 @@ public class Staff {
     }
 
     public void setGioiTinh(String gioitinh) {
-        gioitinh = gioitinh;
+        this.gioitinh = gioitinh;
     }
 
     public Date getNgaySinh() {
@@ -92,7 +93,7 @@ public class Staff {
     }
 
     public void setNgaySinh(Date ngaysinh) {
-        ngaysinh = ngaysinh;
+        this.ngaysinh = ngaysinh;
     }
 
     public String getCMND() {
@@ -100,7 +101,7 @@ public class Staff {
     }
 
     public void setCMND(String cmnd) {
-        cmnd = cmnd;
+        this.cmnd = cmnd;
     }
 
     public String getMatKhau() {
@@ -108,7 +109,7 @@ public class Staff {
     }
 
     public void setMatKhau(String matkhau) {
-        matkhau = matkhau;
+        this.matkhau = matkhau;
     }
     
     public char getQuyenNV() {
@@ -116,11 +117,9 @@ public class Staff {
     }
 
     public void setQuyenNV(char quyennv) {
-        quyennv = quyennv;
+        this.quyennv = quyennv;
     }
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
-//    private Set<BillImport> listBillImport = new HashSet<>();
-//    
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
-//    private Set<Order> listOrder = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
+    private Set<Order> listOrder = new HashSet<>();
 }

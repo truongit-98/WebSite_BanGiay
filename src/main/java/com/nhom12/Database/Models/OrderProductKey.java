@@ -11,11 +11,11 @@ import java.io.Serializable;
  * @author ThongPVT
  */
 @Embeddable
-public class OrderProductKey  implements Serializable{
-    @Column(name = "MaDH")
+public class OrderProductKey implements Serializable{
+    @Column(name = "maDH")
     int madh;
  
-    @Column(name = "MaSP")
+    @Column(name = "maSP")
     int masp;
     
     public int getMasp() {
@@ -23,7 +23,7 @@ public class OrderProductKey  implements Serializable{
     }
 
     public void setMasp(int masp) {
-        masp = masp;
+        this.masp = masp;
     }
     
     public int getMadh() {
@@ -31,6 +31,6 @@ public class OrderProductKey  implements Serializable{
     }
 
     public void setMadh(int madh) {
-        madh = madh;
+        this.madh = madh;
     }
 }

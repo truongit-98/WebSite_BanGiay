@@ -12,8 +12,6 @@
         <%@include file="/shared/head.jsp" %>
     </head>
     <body>
-        <c:set var="context" value="${pageContext.request.contextPath}" />
-
         <div id="page">
             <%@include file="/shared/nav-bar.jsp" %>
             <aside id="colorlib-hero">
@@ -101,7 +99,7 @@
                                     <!--</div>-->
                                     <div class="desc">
                                         <h2><a href="home/${item.masp}">${item.tensp}</a></h2>
-                                        <i class="icon-shopping-cart cart-hover" data-id="${item.masp}" id="cart-id"></i><span class="price">${item.dongia}</span>
+                                       <span class="price">${item.dongia}</span>
                                     </div>
                                 </div>
                             </div>

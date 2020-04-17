@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.nhom12.Database.Models.CartModel"%>
+<%@page import="java.util.List"%>
 <nav class="colorlib-nav" role="navigation">
     <div class="top-menu">
         <div class="container">
@@ -34,7 +36,16 @@
                         <li><a href="">Women</a></li>
                         <li><a href="">About</a></li>
                         <li><a href="">Contact</a></li>
-                        <li class="cart" style="font-size: 18px;"><a href="/WebSite_BanGiay/cart"><i class="icon-shopping-cart"></i> Cart [<span id="cart-quantity">0</span>]</a></li>
+                        <%
+                            List<CartModel> cartModels = (List<CartModel>)session.getAttribute("cartSession");
+                            int total = 0;
+                            if(cartModels != null){
+                                for(CartModel c: cartModels){
+                                    total += c.getQuantity();
+                                }
+                            }
+                        %>
+                        <li class="cart" style="font-size: 18px;"><a href="/WebSite_BanGiay/cart"><i class="icon-shopping-cart"></i> Cart [<span class="cart-quantity-span"><%=total%></span>]</a></li>
 
                     </ul>
                 </div>

@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 /**
  *
@@ -24,43 +25,47 @@ public class ProductDao {
 
     private SessionFactory factory;
     private Session session;
+
     public ProductDao() {
-          factory = HibernateUtil.getSessionFactory();
-          session = factory.getCurrentSession();
+        factory = HibernateUtil.getSessionFactory();
+       
     }
 
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
-        try {      
+        try {
+            session = factory.getCurrentSession();
             session.getTransaction().begin();
 
             String hql = "from Product";
             Query query = session.createQuery(hql);
-            products = (List<Product>)query.list();
+            products = (List<Product>) query.list();
             session.getTransaction().commit();
 
         } catch (Exception ex) {
-             session.getTransaction().rollback();
+            session.getTransaction().rollback();
             throw ex;
-           
-        } 
+
+        }
         return products;
     }
-    
-    public Product getProduct(int id){
+
+    public Product getProduct(int id) {
         Product product = null;
-        try{
+        try {
+            session = factory.getCurrentSession();
             session.getTransaction().begin();
-            
+
             String hql = "select p from Product p where p.masp=:uid";
             Query query = session.createQuery(hql);
             query.setParameter("uid", id);
-            product = (Product)query.uniqueResult();
+            product = (Product) query.uniqueResult();
             session.getTransaction().commit();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             session.getTransaction().rollback();
             throw ex;
         }
+
         return product;
     }
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.nhom12.Database.Models;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -13,31 +14,23 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="size")
-public class Size {
+public class Size implements Serializable {
     @Id
     private int masize;
     @Column(name = "Size")
     private int size;
     
-    public int getMasp(){
+    public int getMasize(){
         return masize;
     }
-    public void setMasp(int masize){
-        masize = masize;
+    public void setMasize(int masize){
+        this.masize = masize;
     }
     public int getSize(){
         return size;
     }
     public void setSize(int size){
-        size = size;
+        this.size = size;
     }
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "size")
-//    private Set<BillImportDetail> listBillImportDetail = new HashSet<>();
-//    
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "size")
-//    private Set<OrderDetail> listOrderDetail = new HashSet<>();
-//    
-//    @OneToMany(mappedBy = "size")
-//    Set<ProductDetail> listProductDetail;
     
 }

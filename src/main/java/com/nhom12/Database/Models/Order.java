@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.nhom12.Database.Models;
+import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -14,7 +15,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name="donhang")
-public class Order {
+public class Order implements Serializable {
     @Id
     private int MaDH;
     private Date NgayDat;

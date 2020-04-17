@@ -17,6 +17,7 @@ public class CartModel {
     private int quantity;
     private String urlImg;
     private long price;
+    private int sizeId;
     
     public int getProductId(){
         return productId;
@@ -52,6 +53,14 @@ public class CartModel {
     public void setPrice(long price){
         this.price = price;
     }
+    
+    public int getSizeId(){
+        return sizeId;
+    }
+    public void setSizeId(int id){
+        sizeId = id;
+    }
+    
     public CartModel(){
         
     }

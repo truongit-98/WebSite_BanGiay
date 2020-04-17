@@ -34,13 +34,13 @@ import org.springframework.web.servlet.ModelAndView;
 @EnableWebMvc
 public class CartController {
 
-    private static String cartSession = "cartSession";
+    private static final String cartSession = "cartSession";
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView index(Model model, HttpSession session) {
         ModelAndView mav = new ModelAndView("cart");
         List<CartModel> cartModels = (List<CartModel>) session.getAttribute(cartSession);
-        if (cartModels == null) {
+        if (cartModels == null || cartModels.size() == 0) {
             return new ModelAndView("redirect:/home");
         }
         model.addAttribute("cartModels", cartModels);
@@ -73,7 +73,7 @@ public class CartController {
                         cartModel.setPrice(product.getDongia());
                         cartModel.setUrlImg(product.getAnh());
                         cartModel.setQuantity(cartModelJson.getQuantity());
-
+                        cartModel.setSizeId(cartModelJson.getQuantity());
                         carts.add(cartModel);
                         map.put("quantity", cartModelJson.getQuantity());
                     }
@@ -108,8 +108,7 @@ public class CartController {
     @ResponseBody
     public Map updateCart(HttpServletRequest request, HttpSession session) {
         try {
-            Type type = new TypeToken<CartModel>() {
-            }.getType();
+            Type type = new TypeToken<CartModel>() {}.getType();
             CartModel cartModelJson = new Gson().fromJson(request.getParameter("cartModel"), type);
             List<CartModel> cartModels = (List<CartModel>) session.getAttribute(cartSession);
             for (CartModel m : cartModels) {
@@ -123,6 +122,28 @@ public class CartController {
         } catch (Exception ex) {
             ex.printStackTrace();
             return Collections.singletonMap("status", false);
+        }
+    }
+    @RequestMapping(value = "/cart/deleteCartItem", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Map deleteCart(HttpServletRequest request, HttpSession session){
+        try{
+            Map map = new HashMap();
+            int productId = Integer.parseInt(request.getParameter("id"));
+            List<CartModel> cartModels = (List<CartModel>) session.getAttribute(cartSession);
+            for(CartModel c: cartModels){
+                if(c.getProductId() == productId){
+                    cartModels.remove(c);
+                    map.put("quantity", c.getQuantity());
+                    break;
+                }
+            }
+            session.setAttribute(cartSession, cartModels);
+            map.put("status", true);
+            return map;
+        } catch (Exception ex){
+            ex.printStackTrace();
+            return Collections.singletonMap("status", false); 
         }
     }
 }

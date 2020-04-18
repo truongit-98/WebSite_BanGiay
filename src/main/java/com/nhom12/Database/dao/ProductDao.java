@@ -71,8 +71,6 @@ public class ProductDao {
         session.close();
         return amount;
     }
-        return products;
-    }
 
 
     public Product getProduct(int id) {

@@ -34,6 +34,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -62,7 +63,6 @@ public class HomeController {
         return mav;
     }
 
-<<<<<<< HEAD
     @RequestMapping("/home/{productID}")
     public ModelAndView productDetail(@PathVariable int productID, Model model) {
         ModelAndView mav = new ModelAndView("productDetail");

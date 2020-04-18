@@ -1,4 +1,5 @@
 com\nhom12\controller\HomeController.class
+com\nhom12\controller\CustomerController$1.class
 com\nhom12\Database\Models\RootCity.class
 com\nhom12\controller\CartController$2.class
 com\nhom12\Database\Models\Staff.class
@@ -13,10 +14,15 @@ com\nhom12\Database\dao\SizeDao.class
 com\nhom12\Database\Models\SanphamSize.class
 com\nhom12\Database\HibernateUtil.class
 com\nhom12\Database\Models\Size.class
+com\nhom12\controller\CustomerController.class
 com\nhom12\Database\dao\ProductDao.class
+com\nhom12\controller\CustomerController$3.class
 com\nhom12\Database\Models\Customer.class
 com\nhom12\Database\dao\CustomerDao.class
+com\nhom12\controller\CustomerController$2.class
 com\nhom12\Database\Models\UserCookie.class
+com\nhom12\controller\CustomerController$5.class
 com\nhom12\controller\CartController.class
+com\nhom12\controller\CustomerController$4.class
 com\nhom12\Database\Models\OrderProductKey.class
 com\nhom12\Database\Models\RootObject.class

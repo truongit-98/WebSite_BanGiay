@@ -8,7 +8,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
-
+import java.util.HashSet;
 /**
  *
  * @author ThongPVT
@@ -17,80 +17,100 @@ import java.util.Set;
 @Table(name="donhang")
 public class Order implements Serializable {
     @Id
-    private int MaDH;
-    private Date NgayDat;
-    private Date NgayGiao;
-    private String DCGiao;
-    private double TongTien;
-    private String ThanhToan;
-    private String TinhTrang;
-    private String HoTen;
-    private String Email;
-    private String SDT;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int maDH;
+    private Date ngayDat;
+    private Date ngayGiao;
+    private String dcGiao;
+    private double tongTien;
+    private String thanhToan;
+    private String tinhTrang;
+    private String hoTen;
+    private String email;
+    private String sdt;
     
     public int getMaDH(){
-        return MaDH;
+        return maDH;
     }
     public void setMaDH(int id){
-        MaDH = id;
+        maDH = id;
     }
+    @Column(name="NgayDat")
     public Date getNgayDat(){
-        return NgayDat;
+        return ngayDat;
     }
     public void setNgayDat(Date date){
-        NgayDat = date;
+        ngayDat = date;
     }
+    @Column(name="NgayGiao")
     public Date getNgayGiao(){
-        return NgayGiao;
+        return ngayGiao;
     }
     public void setNgayGiao(Date date){
-        NgayGiao = date;
+        ngayGiao = date;
     }
-    public String getDCGiao(){
-        return DCGiao;
+    @Column(name="DCGiao")
+    public String getDcGiao(){
+        return dcGiao;
     }
-    public void setDCGiao(String address){
-        DCGiao = address;
+    public void setDcGiao(String address){
+        dcGiao = address;
     }
+    @Column(name="TongTien")
     public double getTongTien(){
-        return TongTien;
+        return tongTien;
     }
     public void setTongTien(double total){
-        TongTien = total;
-    }        
+        tongTien = total;
+    }
+    @Column(name="ThanhToan")
     public String getThanhToan(){
-        return ThanhToan;
+        return thanhToan;
     }
     public void setThanhToan(String thanhToan){
-        ThanhToan = thanhToan;
+        this.thanhToan = thanhToan;
     }
+    @Column(name="TinhTrang")
     public String getTinhTrang(){
-        return TinhTrang;
+        return tinhTrang;
     }
     public void setTinhTrang(String tinhTrang){
-        TinhTrang = tinhTrang;
-    }
-    public String getHoTen(){
-        return HoTen;
-    }
-    public void setHoTen(String fullName){
-        HoTen = fullName;
-    }
-    public String getEmail(){
-        return Email;
-    }
-    public void setEmail(String email){
-        Email = email;
-    }
-    public String getSDT(){
-        return SDT;
-    }    
-    public void setSDT(String sdt){
-        SDT = sdt;
+        this.tinhTrang = tinhTrang;
     }
     
-    @OneToMany(mappedBy = "order")
-    Set<OrderDetail> listOrderDetail;
+    @Column(name="HoTen")
+    public String getHoTen(){
+        return hoTen;
+    }
+    public void setHoTen(String fullName){
+        hoTen = fullName;
+    }
+    
+    @Column(name="Email")
+    public String getEmail(){
+        return email;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }
+    
+    @Column(name="SDT")
+    public String getSdt(){
+        return sdt;
+    }    
+    public void setSdt(String sdt){
+        this.sdt = sdt;
+    }
+    
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    Set<OrderDetail> listOrderDetail = new HashSet<OrderDetail>();
+    public Set<OrderDetail> getListOrderDetail(){
+        return listOrderDetail;
+    }
+    public void setListOrderDetail(Set<OrderDetail> sets){
+        listOrderDetail = sets;
+    }
     
     @ManyToOne
     @JoinColumn(name = "MaKH")

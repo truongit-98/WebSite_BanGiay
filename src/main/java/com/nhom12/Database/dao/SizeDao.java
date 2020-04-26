@@ -9,6 +9,7 @@ import com.nhom12.Database.HibernateUtil;
 import com.nhom12.Database.Models.Size;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -24,12 +25,14 @@ public class SizeDao {
 
     public SizeDao() {
         factory = HibernateUtil.getSessionFactory();
-        session = factory.getCurrentSession();
+       
     }
 
     public List<Size> getAllSizes() {
+        
         List<Size> sizes = new ArrayList<>();
         try {
+            session = factory.getCurrentSession();
             session.getTransaction().begin();
 
             String hql = "from Size";
@@ -37,12 +40,33 @@ public class SizeDao {
             sizes = (List<Size>) query.list();
             session.getTransaction().commit();
 
-        } catch (Exception ex) {
+        } catch (HibernateException ex) {
             session.getTransaction().rollback();
             throw ex;
 
         }
         session.close();
         return sizes;
+    }
+    
+    public Size getSizeById(int id){
+        Size size = new Size();
+        try {
+            session = factory.getCurrentSession();
+            session.getTransaction().begin();
+
+            String hql = "from Size s where s.maSize=:id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            size = (Size) query.uniqueResult();
+            session.getTransaction().commit();
+
+        } catch (HibernateException ex) {
+            session.getTransaction().rollback();
+            throw ex;
+
+        }
+        session.close();
+        return size;
     }
 }

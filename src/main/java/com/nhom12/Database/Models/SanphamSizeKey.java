@@ -16,17 +16,17 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SanphamSizeKey implements Serializable {
     
-    @Column(name="masize")
-    private int maSize;
+    @Column(name="MaSize")
+    private int masize;
     
-    @Column(name="masp")
+    @Column(name="MaSP")
     private int maSP;
             
-    public int getMaSize(){
-        return maSize;
+    public int getMasize(){
+        return masize;
     } 
-    public void setMaSize(int id){
-        maSize = id;
+    public void setMasize(int id){
+        masize = id;
     }
     public int getMaSP(){
         return maSP;

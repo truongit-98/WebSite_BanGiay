@@ -6,6 +6,7 @@
 package com.nhom12.Database.Models;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 /**
@@ -16,16 +17,18 @@ import javax.persistence.*;
 public class Product implements Serializable {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int masp;
     @Column(name = "TenSP")
     private String tensp;
     @Column(name = "SoLuongTong")
     private int soluongtong;
     @Column(name = "DonGia")
-    private long dongia;
+    private double dongia;
     @Column(name = "MoTa")
     private String mota;
     @Column(name = "NgayCapNhat")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date ngaycapnhat;
     @Column(name = "Anh")
     private String anh;
@@ -76,10 +79,10 @@ public class Product implements Serializable {
         soluongtong = soluong;
     }
     
-    public long getDongia(){
+    public double getDongia(){
         return dongia;
     }
-    public void setDongia(long gia){
+    public void setDongia(double gia){
         dongia = gia;
     }
     
@@ -123,5 +126,14 @@ public class Product implements Serializable {
     }
     public void setMansx(Integer maNSX){
         this.mansx = maNSX;
+    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+    @OrderBy("masize asc")
+    Set<SanphamSize> listSanPhamSize = new HashSet<SanphamSize>();
+    public Set<SanphamSize> getListSanPhamSize(){
+        return listSanPhamSize;
+    }
+    public void setListSanPhamSize(Set<SanphamSize> sets){
+        listSanPhamSize = sets;
     }
 }

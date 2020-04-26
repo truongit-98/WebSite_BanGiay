@@ -4,20 +4,26 @@
  * and open the template in the editor.
  */
 package com.nhom12.Database.Models;
+
 import javax.persistence.*;
 import java.io.Serializable;
+
 /**
  *
  * @author ThongPVT
  */
 @Embeddable
-public class OrderProductKey implements Serializable{
+public class OrderProductKey implements Serializable {
+
     @Column(name = "maDH")
     int madh;
- 
+
     @Column(name = "maSP")
     int masp;
-    
+
+    @Column(name = "maSize")
+    int maSize;
+
     public int getMasp() {
         return masp;
     }
@@ -25,12 +31,20 @@ public class OrderProductKey implements Serializable{
     public void setMasp(int masp) {
         this.masp = masp;
     }
-    
+
     public int getMadh() {
         return madh;
     }
 
     public void setMadh(int madh) {
         this.madh = madh;
+    }
+
+    public int getMaSize() {
+        return maSize;
+    }
+
+    public void setMaSize(int id) {
+        maSize = id;
     }
 }

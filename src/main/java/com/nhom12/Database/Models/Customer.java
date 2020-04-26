@@ -19,9 +19,9 @@ import javax.validation.constraints.Size;
 @Table(name="khachhang")
 public class Customer implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maKH;
     @NotNull
-    @Size(min=16, message="Họ và tên phải có ít nhất 16 ký tự!")
     private String tenKH;
     @NotNull(message="Không thể để trống giới tính!")
     private String gioiTinh;
@@ -30,10 +30,8 @@ public class Customer implements Serializable {
     @Email(message="Định dạng email không hợp lệ!")
     private String email;
     @NotNull
-    @Size(min=10, max=10, message="Số điện thoại phải có đúng 10 ký tự!")
     private String sdt;
     @NotNull
-    @Size(min=12, max=16, message="Mật khẩu phải có ít nhất từ 12-16 ký tự!")
     private String matKhau;
     
     public int getMaKH(){
@@ -83,4 +81,6 @@ public class Customer implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private Set<Order> listOrder = new HashSet<>();
 
+    
+    
 }

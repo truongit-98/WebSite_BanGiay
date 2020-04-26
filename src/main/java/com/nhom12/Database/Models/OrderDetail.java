@@ -17,8 +17,14 @@ public class OrderDetail implements Serializable {
     @EmbeddedId
     OrderProductKey id;
     private int soluong;
-    private long gia;
+    private double gia;
     
+    public OrderProductKey getId(){
+        return id;
+    }
+    public void setOrderProductKey(OrderProductKey key){
+        id = key;
+    }
     
     public int getSoluong(){
         return soluong;
@@ -27,10 +33,10 @@ public class OrderDetail implements Serializable {
         this.soluong = soLuong;
     }
     
-    public long getGia(){
+    public double getGia(){
         return gia;
     }
-    public void setGia(long price){
+    public void setGia(double price){
         gia = price;
     }
     
@@ -39,10 +45,15 @@ public class OrderDetail implements Serializable {
     @MapsId("MaDH")
     @JoinColumn(name = "MaDH")
     Order order;
- 
+    public Order getOrder(){
+        return order;
+    }
+    
     @ManyToOne
     @MapsId("MaSP")
     @JoinColumn(name = "MaSP")
     Product product;   
-    
+    public Product getProduct(){
+        return product;
+    }
 }

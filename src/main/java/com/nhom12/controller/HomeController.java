@@ -42,7 +42,7 @@ public class HomeController {
 
     private @Autowired
     ServletContext servletContext;
-
+    @RequestMapping(value="/home", method=RequestMethod.GET)
     public ModelAndView homePage(@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
         if (page < 0) {
             page = 1;
@@ -68,10 +68,7 @@ public class HomeController {
         ModelAndView mav = new ModelAndView("productDetail");
         ProductDao productDao = new ProductDao();
         Product product = productDao.getProduct(productID);
-        SizeDao sizeDao = new SizeDao();
-        List<Size> sizes = sizeDao.getAllSizes();
         model.addAttribute("product", product);
-        model.addAttribute("sizes", sizes);
         return mav;
     }
 
@@ -89,7 +86,7 @@ public class HomeController {
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getProductsByKey(txtSearch, page - 1);
         long total = productDao.getAmountProducts(txtSearch);
-        long pageMax = total / 10;
+        long pageMax = total / 8;
         if (total % 10 != 0) {
             pageMax += 1;
         }
@@ -162,6 +159,18 @@ public class HomeController {
             }
         }
         return Collections.singletonMap("status", false);
-
     }
+    
+    @RequestMapping(value="/about", method=RequestMethod.GET)
+    public ModelAndView aboutPage(){
+        ModelAndView mav = new ModelAndView("about");
+        return mav;
+    }
+    @RequestMapping(value="/contact", method=RequestMethod.GET)
+    public ModelAndView contactPage(){
+        ModelAndView mav = new ModelAndView("contact");
+        return mav;
+    }
+    
+    
 }

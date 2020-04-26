@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="com.nhom12.Database.Models.CartModel" %>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
@@ -84,33 +86,33 @@
                                     <div class="product-img" style="background-image: url('<c:url value="/resources/images/${item.urlImg}"/>');">
                                     </div>
                                     <div class="display-tc">
-                                        <h3>${item.productName}</h3>
+                                        <h3>${item.productName} (Size ${item.sizeName})</h3>
                                     </div>
                                 </div>
                                 <div class="one-eight text-center">
                                     <div class="display-tc">
-                                        <span><span class="price">${item.price}<span>VND</span></span></span>
+                                        <span><span class="price"><fmt:formatNumber type = "number" 
+                                                          maxFractionDigits = "3" value = "${item.price}" /><span>đ</span></span></span>
                                     </div>
                                 </div>
                                 <div class="one-eight text-center" s>
                                     <div class="display-tc" >
-                                        <input type="number" class="quantity-cart" name="quantity" data-id="${item.productId}" class="form-control input-number text-center" value="${item.quantity}" min="1" max="100">
+                                        <input type="number" class="quantity-cart" name="quantity" data-id="${item.productId}" data-size="${item.sizeId}" class="form-control input-number text-center" value="${item.quantity}" min="1" max="100">
                                     </div>
                                 </div> 
                                 <div class="one-eight text-center">
                                     <div class="display-tc">
-                                        <span><span class="totals">${item.price * item.quantity}<span>VND</span></span></span>
+                                        <span><span class="totals"><fmt:formatNumber type = "number" 
+                                                          maxFractionDigits = "3" value = "${item.price * item.quantity}" /><span>đ</span></span></span>
                                     </div>
                                 </div>                           
                                 <div class="one-eight text-center">
                                     <div class="display-tc">
-                                        <a href="#" class="closed" data-id="${item.productId}"></a>
+                                        <a href="#" class="closed" data-id="${item.productId}" data-size="${item.sizeId}"></a>
                                     </div>
                                 </div>
                             </div>
                         </c:forEach>
-
-
                     </div>
                 </div>
                 <div class="row row-pb-lg">
@@ -118,32 +120,26 @@
                         <div class="total-wrap">
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <form action="#">
-                                        <div class="row form-group">
-                                            <div class="col-sm-9">
-                                                <input type="text" name="quantity" class="form-control input-number" placeholder="Your Coupon Number...">
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <input type="submit" value="Apply Coupon" class="btn btn-primary">
-                                            </div>
-                                        </div>
-                                    </form>
+
                                 </div>
                                 <div class="col-sm-4 text-center">
                                     <div class="total">
                                         <div class="sub">
-                                            <%                                                List<CartModel> carts = (List<CartModel>) session.getAttribute("cartSession");
+
+                                            <%  List<CartModel> carts = (List<CartModel>) session.getAttribute("cartSession");
                                                 long totalCart = 0;
                                                 for (CartModel c : carts) {
                                                     totalCart += c.getPrice() * c.getQuantity();
                                                 }
                                             %>
-                                            <p><span>Subtotal:</span> <span class="sub-totals"><%=totalCart + "VND"%></span></p>
+                                            <p><span>Subtotal:</span> <span class="sub-totals"><fmt:formatNumber type = "number" 
+                                                    maxFractionDigits = "3" value = "<%= totalCart%>" />đ</span></p>
                                             <p><span>Delivery:</span> <span>0</span></p>
                                             <p><span>Discount:</span> <span>0</span></p>
                                         </div>
                                         <div class="grand-total">
-                                            <p><span><strong>Total:</strong></span> <span class="cart-totals"><%=totalCart + "VND"%></span></p>
+                                            <p><span><strong>Total:</strong></span> <span class="cart-totals"><fmt:formatNumber type = "number" 
+                                                    maxFractionDigits = "3" value = "<%= totalCart%>" />đ</span></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -158,54 +154,25 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-                        <h2>Related Products</h2>
+                        <h2>Sản phẩm bán chạy</h2>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 col-lg-3 mb-4 text-center">
-                        <div class="product-entry border">
-                            <a href="#" class="prod-img">
-                                <img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                            </a>
-                            <div class="desc">
-                                <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                                <span class="price">$139.00</span>
+                    <c:if test="${sellingProducts.size() == 4}">
+                        <c:forEach items="${sellingProducts}" var="item"> 
+                            <div class="col-md-3 col-lg-3 mb-4 text-center">
+                            <div class="product-entry border">
+                                <a href="#" class="prod-img">
+                                    <img src="<c:url value="/resource/images/${item.anh}"/>" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                </a>
+                                <div class="desc">
+                                    <h2><a href="#">${item.tensp}</a></h2>
+                                    <span class="price"><fmt:formatNumber pattern="#,##0" value = "${item.dongia}" />đ</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 mb-4 text-center">
-                        <div class="product-entry border">
-                            <a href="#" class="prod-img">
-                                <img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                            </a>
-                            <div class="desc">
-                                <h2><a href="#">Women's Minam Meaghan</a></h2>
-                                <span class="price">$139.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 mb-4 text-center">
-                        <div class="product-entry border">
-                            <a href="#" class="prod-img">
-                                <img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                            </a>
-                            <div class="desc">
-                                <h2><a href="#">Men's Taja Commissioner</a></h2>
-                                <span class="price">$139.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3 mb-4 text-center">
-                        <div class="product-entry border">
-                            <a href="#" class="prod-img">
-                                <img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                            </a>
-                            <div class="desc">
-                                <h2><a href="#">Russ Men's Sneakers</a></h2>
-                                <span class="price">$139.00</span>
-                            </div>
-                        </div>
-                    </div>
+                        </c:forEach>
+                    </c:if>
                 </div>
             </div>
             <%@include file="/shared/footer.jsp" %>

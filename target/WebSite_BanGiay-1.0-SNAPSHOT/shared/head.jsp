@@ -12,10 +12,13 @@
     <title>Shoes Shop</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"/> 
     <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+  
     <!-- Animate.css -->
+    
     <link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>">
     <!-- Icomoon Icon Fonts-->
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
@@ -23,7 +26,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/ionicons.min.css"/>">
     <!-- Bootstrap  -->
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>">
-
+  
     <!-- Magnific Popup -->
     <link rel="stylesheet" href="<c:url value="/resources/css/magnific-popup.css"/>">
 
@@ -41,8 +44,7 @@
 
     <!-- Theme style  -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-     <link rel="stylesheet" href="<c:url value="/resources/css/mystyle.css"/>">   
+    <link rel="stylesheet" href="<c:url value="/resources/css/mystyle.css"/>">   
 
 
     <!-- jQuery -->
@@ -60,15 +62,15 @@
     <!-- Owl carousel -->
     <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"></script>
     <!-- Magnific Popup -->
-    <script src="<c:url value="/resources/js/magnific-popup.min.js"/>"></script>
     <script src="<c:url value="/resources/js/magnific-popup-options.js"/>"></script>
     <!-- Date Picker -->
     <script src="<c:url value="/resources/js/bootstrap-datepicker.js"/>"></script>
     <!-- Stellar Parallax -->
     <script src="<c:url value="/resources/js/jquery.stellar.min.js"/>"></script>
     <!-- Main -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awclaw/5.13.0/js/all.min.js"></script>
     <script src="<c:url value="/resources/js/main.js"/>"></script>
-   
+    
 
 
 </head>

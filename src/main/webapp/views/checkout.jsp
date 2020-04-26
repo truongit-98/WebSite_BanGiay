@@ -206,28 +206,28 @@
                                             <div class="form-group">
                                                 <div class="col-md-12">
                                                     <div class="radio">
-                                                        <label><input type="radio" required name="payment" value="bankTranfer">Thẻ ATM/Internet Banking</label>
+                                                        <label><input type="radio" required name="payment" value="Thẻ ATM/Internet Banking">Thẻ ATM/Internet Banking</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-md-12">
                                                     <div class="radio">
-                                                        <label><input type="radio"  name="payment" value="PaymentOnDelivery"> Thanh toán khi nhận hàng </label>
+                                                        <label><input type="radio"  name="payment" value="Thanh toán khi nhận hàng"> Thanh toán khi nhận hàng </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-md-12">
                                                     <div class="radio">
-                                                        <label><input type="radio"  name="payment" value="zaloPay"> Thanh toán bằng ZaloPay</label>
+                                                        <label><input type="radio"  name="payment" value="Thanh toán bằng ZaloPay"> Thanh toán bằng ZaloPay</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-md-12">
                                                     <div class="radio">
-                                                        <label><input type="radio" name="payment" value="momo"> Thanh toán bằng ví MoMo</label>
+                                                        <label><input type="radio" name="payment" value="Thanh toán bằng ví MoMo"> Thanh toán bằng ví MoMo</label>
                                                     </div>
                                                 </div>
                                             </div>

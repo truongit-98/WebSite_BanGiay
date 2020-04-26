@@ -55,8 +55,8 @@ public class ProductDao {
         return products;
     }
 
-    public long getAmountProducts(String key) {
-        long amount;
+    public int getAmountProducts(String key) {
+        int amount;
         session = factory.getCurrentSession();
         try {
 
@@ -64,7 +64,7 @@ public class ProductDao {
 
             String hql = "select count(e) from Product e where tensp like '%" + key + "%'";
             Query query = session.createQuery(hql);
-            amount = (long) query.uniqueResult();
+            amount = ((Long) query.uniqueResult()).intValue();
             session.getTransaction().commit();
         } catch (Exception ex) {
             session.getTransaction().rollback();

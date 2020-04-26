@@ -50,9 +50,9 @@ public class HomeController {
         ModelAndView mav = new ModelAndView("index");
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getAllProducts(page - 1);
-        long total = productDao.getAmountProducts("");
-        long pageMax = total / 10;
-        if (total % 10 != 0) {
+        int total = productDao.getAmountProducts("");
+        int pageMax = total / 8;
+        if (total % 8 != 0) {
             pageMax += 1;
         }
         model.addAttribute("products", products);

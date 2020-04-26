@@ -224,7 +224,7 @@ public class CustomerController {
                     UserCookie cookie = new Gson().fromJson(URLDecoder.decode(c.getValue(), "UTF-8"), type);
                     CustomerDao custDao = new CustomerDao();
                     if (cookie != null && custDao.FindById(cookie.getId())) {
-                        long total = 0;
+                        double total = 0;
                         for (CartModel ca : cartModels) {
                             total = ca.getPrice() * ca.getQuantity();
                         }

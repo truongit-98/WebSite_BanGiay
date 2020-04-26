@@ -152,28 +152,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-                        <h2>Sản phẩm bán chạy</h2>
+                <c:if test="${sellingProducts.size() == 4}">
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+                            <h2>Sản phẩm bán chạy</h2>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <c:if test="${sellingProducts.size() == 4}">
+                    <div class="row">
                         <c:forEach items="${sellingProducts}" var="item"> 
                             <div class="col-md-3 col-lg-3 mb-4 text-center">
-                            <div class="product-entry border">
-                                <a href="#" class="prod-img">
-                                    <img src="<c:url value="/resource/images/${item.anh}"/>" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                                </a>
-                                <div class="desc">
-                                    <h2><a href="#">${item.tensp}</a></h2>
-                                    <span class="price"><fmt:formatNumber pattern="#,##0" value = "${item.dongia}" />đ</span>
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="<c:url value="/resources/images/${item.anh}"/>" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">${item.tensp}</a></h2>
+                                        <span class="price"><fmt:formatNumber pattern="#,##0" value = "${item.dongia}" />đ</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </c:forEach>
-                    </c:if>
-                </div>
+
+                    </div>
+                </c:if>
             </div>
             <%@include file="/shared/footer.jsp" %>
         </div>

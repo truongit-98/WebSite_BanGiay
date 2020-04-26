@@ -98,7 +98,7 @@
                                 <div class="col-lg-3 mb-4 text-center">
                                     <div class="product-entry border">
                                         <!--<div style="background-color: #686b6b1c;">-->
-                                        <a href="/WebSite_BanGiay/home/${item.masp}" class="prod-img" style="height:; display: flex; align-items: center;overflow: hidden;">
+                                        <a href="/WebSite_BanGiay/home/${item.masp}" class="prod-img" style=" display: flex; align-items: center;overflow: hidden;">
                                             <img src="<c:url value="/resources/images/${item.anh}"/>" class="img-fluid" alt="${item.anh}">
                                         </a>
                                         <!--</div>-->

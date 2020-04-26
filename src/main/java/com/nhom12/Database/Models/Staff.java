@@ -20,6 +20,7 @@ import java.util.Set;
 public class Staff implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int manv;
     @Column(name = "TenNV")
     private String tennv;

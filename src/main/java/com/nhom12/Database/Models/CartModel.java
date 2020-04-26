@@ -16,8 +16,9 @@ public class CartModel {
     private String productName;
     private int quantity;
     private String urlImg;
-    private long price;
+    private double price;
     private int sizeId;
+    private int sizeName;
     
     public int getProductId(){
         return productId;
@@ -47,10 +48,10 @@ public class CartModel {
         urlImg = url;
     }
     
-    public long getPrice(){
+    public double getPrice(){
         return price;
     }
-    public void setPrice(long price){
+    public void setPrice(double price){
         this.price = price;
     }
     
@@ -60,16 +61,21 @@ public class CartModel {
     public void setSizeId(int id){
         sizeId = id;
     }
+    public int getSizeName(){
+        return sizeName;
+    }
+    public void setSizeName(int name){
+        sizeName = name;
+    }
     
     public CartModel(){
         
     }
     
-    public static int findIndex(List<CartModel> listCarts, int id){
+    public static int findIndex(List<CartModel> listCarts, int id, int sizeId){
           for(int i=0; i<listCarts.size(); i++){
-            if(listCarts.get(i).getProductId() == id){
+            if(listCarts.get(i).getProductId() == id && listCarts.get(i).getSizeId() == sizeId){
                 return i;
-                
             }
         }
           return -1;

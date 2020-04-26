@@ -16,6 +16,7 @@ import javax.persistence.*;
 @Table(name="nsx")
 public class Producer implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int mansx;
     @Column(name = "TenNSX")
     private String tennsx;

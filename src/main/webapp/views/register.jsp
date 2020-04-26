@@ -30,26 +30,26 @@
                             <c:if test="${!errorMessage.isEmpty()}">
                                 <div class="error">
                                     <c:out value="${errorMessage}"></c:out>
-                                    </div>
+                                </div>
                             </c:if>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="fullName">Họ và tên</label>
-                                    <input type="text" minlength="16" maxlength="50" required name="tenKH" id="fullName" class="form-control" placeholder="Họ và tên" >
+                                    <input type="text" minlength="10" maxlength="50" required name="tenKH" id="fullName" class="form-control" placeholder="Họ và tên" >
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" minlength="12" maxlength="50" required name="email" id="email" class="form-control" placeholder="Email">
+                                    <input type="email" minlength="10" maxlength="50" required name="email" id="email" class="form-control" placeholder="Email">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="password">Mật khẩu</label>
-                                    <input type="password" minlength="12" minlength="16"  required name="matKhau" id="password" class="form-control" placeholder="Mật khẩu">
+                                    <input type="password" minlength="8" minlength="16"  required name="matKhau" id="password" class="form-control" placeholder="Mật khẩu">
 
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                     <label for="country">Tỉnh/TP</label>
                                     <div class="form-field">
                                         <i class="icon icon-arrow-down3"></i>
-                                        <select name="city" id="city" class="form-control">
+                                        <select name="city" required id="city" class="form-control">
                                             <option value="">Chọn Tỉnh/TP</option>
                                             <option value="01">Hà Nội</option>
                                             <option value="79">TP.Hồ Chí Minh</option>
@@ -152,7 +152,7 @@
                                     <label for="country">Quận/huyện</label>
                                     <div class="form-field">
                                         <i class="icon icon-arrow-down3"></i>
-                                        <select name="district" id="district" class="form-control">
+                                        <select name="district" required  id="district" class="form-control">
                                             <option value="default">Chọn Quận/huyện</option>
                                         </select>
                                     </div>
@@ -163,7 +163,7 @@
                                     <label for="country">Phường/xã</label>
                                     <div class="form-field">
                                         <i class="icon icon-arrow-down3"></i>
-                                        <select name="ward" id="ward" class="form-control">
+                                        <select name="ward" required id="ward" class="form-control">
                                             <option value="default">Chọn Phường/xã</:option>
                                         </select>
                                     </div>

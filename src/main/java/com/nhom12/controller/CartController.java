@@ -6,6 +6,7 @@
 package com.nhom12.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import java.lang.reflect.Type;
 import com.google.gson.reflect.TypeToken;
 import java.util.Collections;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.nhom12.Database.dao.ProductDao;
 import com.nhom12.Database.Models.*;
+import com.nhom12.Database.dao.SizeDao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +46,7 @@ public class CartController {
             return new ModelAndView("redirect:/home");
         }
         model.addAttribute("cartModels", cartModels);
+        model.addAttribute("sellingProducts", new ProductDao().getSellingProducts(4));
         return mav;
     }
 
@@ -55,13 +58,15 @@ public class CartController {
         }.getType();
         CartModel cartModelJson = new Gson().fromJson(request.getParameter("cartModel"), type);
         ProductDao dao = new ProductDao();
+        SizeDao sizeDao = new SizeDao();
         Map map = new HashMap();
         try {
             Product product = dao.getProduct(cartModelJson.getProductId());
-            if (product != null) {
+            Size size = sizeDao.getSizeById(cartModelJson.getSizeId());
+            if (product != null && size != null  ) {
                 List<CartModel> carts = (List<CartModel>) session.getAttribute(cartSession);
                 if (carts != null) {
-                    int index = CartModel.findIndex(carts, product.getMasp());
+                    int index = CartModel.findIndex(carts, product.getMasp(), size.getMaSize());
                     if (index > -1) {
                         carts.get(index).setQuantity(carts.get(index).getQuantity() + cartModelJson.getQuantity());
                         map.put("quantity", cartModelJson.getQuantity());
@@ -73,7 +78,8 @@ public class CartController {
                         cartModel.setPrice(product.getDongia());
                         cartModel.setUrlImg(product.getAnh());
                         cartModel.setQuantity(cartModelJson.getQuantity());
-                        cartModel.setSizeId(cartModelJson.getQuantity());
+                        cartModel.setSizeId(cartModelJson.getSizeId());
+                        cartModel.setSizeName(size.getSize());
                         carts.add(cartModel);
                         map.put("quantity", cartModelJson.getQuantity());
                     }
@@ -87,7 +93,8 @@ public class CartController {
                     cartModel.setPrice(product.getDongia());
                     cartModel.setUrlImg(product.getAnh());
                     cartModel.setQuantity(cartModelJson.getQuantity());
-
+                    cartModel.setSizeId(cartModelJson.getSizeId());
+                    cartModel.setSizeName(size.getSize());
                     carts.add(cartModel);
                     map.put("quantity", cartModelJson.getQuantity());
 
@@ -108,42 +115,54 @@ public class CartController {
     @ResponseBody
     public Map updateCart(HttpServletRequest request, HttpSession session) {
         try {
-            Type type = new TypeToken<CartModel>() {}.getType();
+            Type type = new TypeToken<CartModel>() {
+            }.getType();
             CartModel cartModelJson = new Gson().fromJson(request.getParameter("cartModel"), type);
             List<CartModel> cartModels = (List<CartModel>) session.getAttribute(cartSession);
-            for (CartModel m : cartModels) {
-                if (m.getProductId() == cartModelJson.getProductId()) {
-                    m.setQuantity(cartModelJson.getQuantity());
-                    session.setAttribute(cartSession, cartModels);
-                    return Collections.singletonMap("status", true);
+            if (cartModels != null) {
+                for (CartModel m : cartModels) {
+                    if (m.getProductId() == cartModelJson.getProductId() && m.getSizeId() == cartModelJson.getSizeId()) {
+                        m.setQuantity(cartModelJson.getQuantity());
+                        session.setAttribute(cartSession, cartModels);
+                        return Collections.singletonMap("status", true);
+                    }
                 }
             }
             return Collections.singletonMap("status", false);
-        } catch (Exception ex) {
+        } catch (JsonSyntaxException ex) {
             ex.printStackTrace();
             return Collections.singletonMap("status", false);
         }
     }
+
     @RequestMapping(value = "/cart/deleteCartItem", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Map deleteCart(HttpServletRequest request, HttpSession session){
-        try{
+    public Map deleteCart(HttpServletRequest request, HttpSession session) {
+        try {
             Map map = new HashMap();
-            int productId = Integer.parseInt(request.getParameter("id"));
+            Type type = new TypeToken<CartModel>() {
+            }.getType();
+            CartModel cartModelJson = new Gson().fromJson(request.getParameter("cartModel"), type);
             List<CartModel> cartModels = (List<CartModel>) session.getAttribute(cartSession);
-            for(CartModel c: cartModels){
-                if(c.getProductId() == productId){
-                    cartModels.remove(c);
-                    map.put("quantity", c.getQuantity());
-                    break;
+            if (cartModels != null && cartModelJson != null) {
+                for (CartModel c : cartModels) {
+                    if (c.getProductId() == cartModelJson.getProductId() && c.getSizeId() == cartModelJson.getSizeId()) {
+                        cartModels.remove(c);
+                        map.put("quantity", c.getQuantity());
+                        break;
+                    }
                 }
+                if(cartModels.size() == 0){
+                    map.put("redirect", true);
+                }
+                session.setAttribute(cartSession, cartModels);
+                map.put("status", true);
+                return map;
             }
-            session.setAttribute(cartSession, cartModels);
-            map.put("status", true);
-            return map;
-        } catch (Exception ex){
+            return Collections.singletonMap("status", false);
+        } catch (NumberFormatException ex) {
             ex.printStackTrace();
-            return Collections.singletonMap("status", false); 
+            return Collections.singletonMap("status", false);
         }
     }
 }

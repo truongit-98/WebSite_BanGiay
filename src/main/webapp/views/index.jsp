@@ -98,7 +98,7 @@
                                 <div class="col-lg-3 mb-4 text-center">
                                     <div class="product-entry border">
                                         <!--<div style="background-color: #686b6b1c;">-->
-                                        <a href="/WebSite_BanGiay/home/${item.masp}" class="prod-img" style="height: 230px; display: flex; align-items: center;overflow: hidden;">
+                                        <a href="/WebSite_BanGiay/home/${item.masp}" class="prod-img" style="height:; display: flex; align-items: center;overflow: hidden;">
                                             <img src="<c:url value="/resources/images/${item.anh}"/>" class="img-fluid" alt="${item.anh}">
                                         </a>
                                         <!--</div>-->
@@ -180,14 +180,22 @@
             <%@include file="/shared/footer.jsp" %>
         </div>
         <script>
-            $(window).load(function () {
+            $(document).ready(function () {
                 $('.flexslider').flexslider({
                     animation: "slide"
                 });
                 $('.slider-text').addClass('animated fadeInUp');
-            });
 
-        </script>     
+                $.each($('ul.nav-menu > li'), function (i, e) {
+
+                    e.classList.remove('active');
+                });
+
+                $('.home-page').each(function (k, e) {
+                    e.classList.add('active');
+                })
+            })
+        </script>
         <script src="<c:url value="/resources/js/myjs.js"/>"></script>
     </body>
 </html>

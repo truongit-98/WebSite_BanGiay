@@ -38,6 +38,8 @@ public class Product implements Serializable {
     private String anh3;
     @Column(name = "MaNSX")
     private int mansx;
+    @Column(name = "GioiTinh")
+    private String gioitinh;
     
     public Product(){
         
@@ -127,6 +129,13 @@ public class Product implements Serializable {
     public void setMansx(Integer maNSX){
         this.mansx = maNSX;
     }
+    public String getGioiTinh(){
+        return gioitinh;
+    }
+    public void setGioiTinh(String str){
+        gioitinh = str;
+    }
+    
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     @OrderBy("masize asc")
     Set<SanphamSize> listSanPhamSize = new HashSet<SanphamSize>();

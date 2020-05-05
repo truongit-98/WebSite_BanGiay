@@ -34,13 +34,13 @@
             <div class="row">
                 <div class="col-sm-12 text-left menu-1">
                     <ul class="nav-menu">
-                        <li class="home-page"><a href="/WebSite_BanGiay/home">Home</a></li>
-                        <li class="has-dropdown">
+                        <li class="home-page"><a href="/WebSite_BanGiay/home">Trang chủ</a></li>
+<!--                        <li class="has-dropdown">
                             <a href="#">Brand</a>
                             <ul class="dropdown"></ul>
-                        </li>
-                        <li><a href="/WebSite_BanGiay/">Men</a></li>
-                        <li><a href="/WebSite_BanGiay/">Women</a></li>
+                        </li>-->
+                        <li><a href="/WebSite_BanGiay/shop/men">Giày Nam</a></li>
+                        <li><a href="/WebSite_BanGiay/shop/women">Giày Nữ</a></li>
                         <li class="about-page"><a href="/WebSite_BanGiay/about">About</a></li>
                         <li class="contact-page"><a href="/WebSite_BanGiay/contact">Contact</a></li>
                             <%

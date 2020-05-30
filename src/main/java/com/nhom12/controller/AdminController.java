@@ -8,6 +8,7 @@ package com.nhom12.controller;
 import com.nhom12.Database.Models.Product;
 import com.nhom12.Database.Models.Staff;
 import com.nhom12.Database.dao.*;
+import java.lang.reflect.Method;
 import java.util.List;
 import javax.servlet.http.*;
 import org.springframework.http.MediaType;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *
@@ -27,15 +29,8 @@ public class AdminController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView Index(HttpServletRequest request, Model model, HttpSession session) {
         ModelAndView mav = new ModelAndView("login-admin");
-        
-//        Staff admin = (Staff) session.getAttribute("username");
         if (session.getAttribute("username") != null) {
-            ModelAndView admin = new ModelAndView("admin");
-            ProductDao productDao = new ProductDao();
-            List<Product> products = productDao.getAllProducts(0);
-//            admin.setViewName("admin");
-            model.addAttribute("products", products);
-            return admin;
+            return new ModelAndView("redirect:/admin/home");
         }
         return mav;
     }
@@ -54,10 +49,24 @@ public class AdminController {
                 model.addAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng! Vui lòng nhập lại!");
                 return new ModelAndView("login-admin");
             }
-//            session = request.getSession(); 
             session.setAttribute("isLogin", true);
             session.setAttribute("username", userName);
-            return new ModelAndView("admin");
+            return new ModelAndView("redirect:/admin");
         }
+    }
+
+    @RequestMapping(value = "/admin/logout", method = RequestMethod.GET)
+    public ModelAndView Logout(HttpSession session) {
+        session.removeAttribute("isLogin");
+        session.removeAttribute("username");
+        return new ModelAndView("redirect:/admin");
+    }
+
+    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+    public ModelAndView Home(Model model) {
+        ProductDao productDao = new ProductDao();
+        List<Product> products = productDao.getAllProducts(0);
+        model.addAttribute("products", products);
+        return new ModelAndView("home_admin");
     }
 }

@@ -18,7 +18,7 @@
                             <!--<img class="img-thumbnail" alt="avatar"/>-->
                         </button>
                         <div class="dropdown-menu" aria-labelledby="avatar">
-                            <a class="dropdown-item" href="#">Đăng xuất</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/logout">Đăng xuất</a>
                         </div>
                     </div>
                 </div>

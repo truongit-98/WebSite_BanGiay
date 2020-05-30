@@ -20,6 +20,10 @@
                 margin-left: 15px;
                 margin-bottom: 5px;
             }
+/*            .colorlib-form{
+                margin: 30px;
+                width: 500px;
+            }*/
         </style>
         <div id="page">
             <%@include file="/shared/nav-bar.jsp" %>
@@ -38,7 +42,7 @@
                                     <label for="email">Email</label>
                                     <input type="email" name="email" id="email" class="form-control" placeholder="Email">
                                 </div>
-                            </div>
+                            </div>form
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="password">Mật khẩu</label>

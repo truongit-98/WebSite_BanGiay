@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 E:\Develop\Java\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\UserCookie.java
 E:\Develop\Java\WebSite_BanGiay\src\main\java\com\nhom12\services\HandleAddress.java
 E:\Develop\Java\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\Staff.java
@@ -25,3 +26,32 @@ E:\Develop\Java\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\Order.j
 E:\Develop\Java\WebSite_BanGiay\src\main\java\com\nhom12\Database\dao\ProducerDao.java
 E:\Develop\Java\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\OrderDetail.java
 E:\Develop\Java\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\RootCity.java
+=======
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\dao\OrderDetailDao.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\dao\StaffDao.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\controller\AdminController.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\services\HandleAddress.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\CartModel.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\controller\OrderController.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\Order.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\dao\CustomerDao.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\SanphamSizeKey.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\controller\HomeController.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\OrderProductKey.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\dao\ProductDao.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\HibernateUtil.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\Size.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\Producer.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\SanphamSize.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\controller\CustomerController.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\Customer.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\controller\CartController.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\RootCity.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\UserCookie.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\dao\SizeDao.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\OrderDetail.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\RootObject.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\Product.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\Models\Staff.java
+D:\Documents\N?m 4 ki II\L?p trình nâng cao\BTL\WebSite_BanGiay\src\main\java\com\nhom12\Database\dao\OrderDao.java
+>>>>>>> master

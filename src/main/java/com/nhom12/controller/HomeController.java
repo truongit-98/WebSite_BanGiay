@@ -63,7 +63,7 @@ public class HomeController {
         return mav;
     }
 
-    @RequestMapping("/home/{productID}")
+    @RequestMapping("/shop/product/{productID}")
     public ModelAndView productDetail(@PathVariable int productID, Model model) {
         ModelAndView mav = new ModelAndView("productDetail");
         ProductDao productDao = new ProductDao();
@@ -87,7 +87,7 @@ public class HomeController {
         List<Product> products = productDao.getProductsByKey(txtSearch, page - 1);
         long total = productDao.getAmountProducts(txtSearch);
         long pageMax = total / 8;
-        if (total % 10 != 0) {
+        if (total % 8 != 0) {
             pageMax += 1;
         }
         model.addAttribute("products", products);

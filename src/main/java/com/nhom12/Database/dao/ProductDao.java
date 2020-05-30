@@ -32,6 +32,7 @@ public class ProductDao {
         factory = HibernateUtil.getSessionFactory();
     }
 
+    //Lấy tất cả sản phẩm
     public List<Product> getAllProducts(int page) {
         List<Product> products = new ArrayList<>();
         session = factory.getCurrentSession();
@@ -55,13 +56,13 @@ public class ProductDao {
         return products;
     }
 
+    //Lấy số lượng sản phẩm theo từ khóa
     public int getAmountProducts(String key) {
         int amount;
         session = factory.getCurrentSession();
         try {
 
             session.getTransaction().begin();
-
             String hql = "select count(e) from Product e where tensp like '%" + key + "%'";
             Query query = session.createQuery(hql);
             amount = ((Long) query.uniqueResult()).intValue();
@@ -75,6 +76,7 @@ public class ProductDao {
         return amount;
     }
 
+    //Lấy thông tin chi tiết sản phầm
     public Product getProduct(int id) {
         Product product = null;
         session = factory.getCurrentSession();
@@ -95,6 +97,7 @@ public class ProductDao {
         return product;
     }
 
+    //Lấy sản phẩm theo từ khóa
     public List<Product> getProductsByKey(String key, int page) {
         List<Product> products = new ArrayList<>();
         session = factory.getCurrentSession();
@@ -134,13 +137,13 @@ public class ProductDao {
                     .setParameter("currentTime", currentDate);
             List<Object[]> rawList = query.getResultList();
             Iterator it = rawList.iterator();
-            while(it.hasNext()){
-                Object[] line = (Object[])it.next();
+            while (it.hasNext()) {
+                Object[] line = (Object[]) it.next();
                 Product product = new Product();
-                product.setMasp((int)line[0]);
-                product.setTensp((String)line[1]);
-                product.setAnh((String)line[2]);
-                product.setDongia((double)line[3]);
+                product.setMasp((int) line[0]);
+                product.setTensp((String) line[1]);
+                product.setAnh((String) line[2]);
+                product.setDongia((double) line[3]);
                 lstProducts.add(product);
             }
             session.getTransaction().commit();
@@ -152,4 +155,72 @@ public class ProductDao {
         return lstProducts;
 
     }
+
+    ///Lây danh sách sản phẩm nam nữ 
+    public List<Product> getShopProducts(int page, String sex, String key) {
+        List<Product> products = new ArrayList<>();
+        session = factory.getCurrentSession();
+        try {
+
+            session.getTransaction().begin();
+            String hql = "select e from Product e where (e.gioitinh=:sex) and tensp like '%" + key + "%'";
+            Query query = session.createQuery(hql);
+            query.setParameter("sex", sex);
+            query.setFirstResult(8 * page);
+            query.setMaxResults(8);
+            products = (List<Product>) query.list();
+            session.getTransaction().commit();
+
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+            throw ex;
+
+        }
+        session.close();
+        return products;
+    }
+
+    //Lấy danh sách sản phẩm nam nữa theo dkien tim kiem
+    public List<Product> getShopProductsSearch(int page, String filter) {
+        List<Product> products = new ArrayList<>();
+        session = factory.getCurrentSession();
+        try {
+
+            session.getTransaction().begin();
+            String hql = filter;
+            Query query = session.createQuery(hql);
+//            query.setParameter("gia2", gia*1000000);
+            query.setFirstResult(8 * page);
+            query.setMaxResults(8);
+            products = (List<Product>) query.list();
+            session.getTransaction().commit();
+
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+            throw ex;
+
+        }
+        session.close();
+        return products;
+    }
+    
+    public int getAmountProductsSearch(String filter) {
+        int amount;
+        session = factory.getCurrentSession();
+        try {
+
+            session.getTransaction().begin();
+            String hql = "select count(e) from Product e "+filter;
+            Query query = session.createQuery(hql);
+            amount = ((Long) query.uniqueResult()).intValue();
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+            throw ex;
+
+        }
+        session.close();
+        return amount;
+    }
+    
 }

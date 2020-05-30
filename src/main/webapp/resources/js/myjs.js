@@ -203,7 +203,7 @@ $(document).ready(function () {
                     } else {
                         alert("Không thể thêm sản phẩm vào giỏ hàng");
                         $('#loader').removeClass('loader');
-                         $('.icon-load').html('');
+                        $('.icon-load').html('');
                     }
                 }).catch(error => {
                     console.log(error);
@@ -328,6 +328,10 @@ $(document).ready(function () {
                 }
             }
         });
+    });
+
+    $('.page-change').click(function () {
+        $('.pagePost').val($(this).val());
     });
 
 });

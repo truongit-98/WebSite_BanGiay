@@ -1,7 +1,10 @@
 com\nhom12\services\HandleAddress.class
 com\nhom12\Database\Models\Customer.class
 com\nhom12\Database\Models\Product.class
+<<<<<<< HEAD
+=======
 com\nhom12\controller\AdminController.class
+>>>>>>> master
 com\nhom12\controller\CustomerController$4.class
 com\nhom12\services\HandleAddress$3.class
 com\nhom12\controller\CartController$3.class
@@ -13,6 +16,10 @@ com\nhom12\controller\CustomerController.class
 com\nhom12\Database\dao\SizeDao.class
 com\nhom12\Database\Models\Order.class
 com\nhom12\Database\Models\RootObject.class
+<<<<<<< HEAD
+com\nhom12\controller\ShopController.class
+=======
+>>>>>>> master
 com\nhom12\controller\CustomerController$3.class
 com\nhom12\Database\dao\ProductDao.class
 com\nhom12\controller\CustomerController$1.class
@@ -22,6 +29,7 @@ com\nhom12\controller\OrderController$1.class
 com\nhom12\controller\CustomerController$6.class
 com\nhom12\Database\Models\OrderProductKey.class
 com\nhom12\Database\Models\Size.class
+com\nhom12\Database\dao\ProducerDao.class
 com\nhom12\Database\dao\OrderDao.class
 com\nhom12\Database\Models\RootCity.class
 com\nhom12\controller\CustomerController$5.class

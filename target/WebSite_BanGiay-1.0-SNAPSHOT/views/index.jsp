@@ -98,12 +98,12 @@
                                 <div class="col-lg-3 mb-4 text-center">
                                     <div class="product-entry border">
                                         <!--<div style="background-color: #686b6b1c;">-->
-                                        <a href="/WebSite_BanGiay/home/${item.masp}" class="prod-img" style=" display: flex; align-items: center;overflow: hidden;">
+                                        <a href="/WebSite_BanGiay/shop/product/${item.masp}" class="prod-img" style=" display: flex; align-items: center;overflow: hidden;">
                                             <img src="<c:url value="/resources/images/${item.anh}"/>" class="img-fluid" alt="${item.anh}">
                                         </a>
                                         <!--</div>-->
                                         <div class="desc">
-                                            <h2 style="height: 90px;"><a href="/WebSite_BanGiay/home/${item.masp}">${item.tensp}</a></h2>
+                                            <h2 style="height: 90px;"><a href="/WebSite_BanGiay/shop/product/${item.masp}">${item.tensp}</a></h2>
                                             <div style="height:24px"><i class="icon-shopping-cart cart-hover" data-id="${item.masp}" id="cart-id"></i></div>
                                             <span class="price"><fmt:formatNumber type = "number" 
                                                               maxFractionDigits = "3" value = "${item.dongia}" />đ</span>
@@ -118,16 +118,26 @@
                                 <!--<p><a href="" class="btn btn-primary btn-lg">Shop All Products</a></p>-->
 
                                 <div style="display:flex;justify-content: center;">
-                                    <div style="width:130px">
+                                    <div style="width:170px">
                                         <c:if test="${page > 1 }">
 
                                             <c:if test="${isSearch == 0}">
-                                                <a href="/WebSite_BanGiay/home?page=1" class="mr-3" >Trang đầu</a>
-                                                <a href="/WebSite_BanGiay/home?page=${page-1}" class="mr-2" ><<</a>
+                                                <div class="d-flex" style="height: 27px;">
+                                                    <button class="mr-3" >
+                                                        <a href="/WebSite_BanGiay/home?page=1" class="mr-3" style="white-space: nowrap;" >Trang đầu</a>
+                                                    </button>
+                                                    <button class="mr-2">
+                                                        <a href="/WebSite_BanGiay/home?page=${page-1}" class="mr-2" ><<</a>
+                                                    </button>
+                                                </div>
                                             </c:if>
                                             <c:if test="${isSearch == 1}">
-                                                <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=1" class="mr-3" >Trang đầu</a>
-                                                <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${page-1}" class="mr-2" ><<</a>
+                                                <button class="mr-3" >
+                                                    <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=1" style="white-space: nowrap;"  >Trang đầu</a>
+                                                </button>
+                                                <button class="mr-2">
+                                                    <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${page-1}" ><<</a>
+                                                </button>
                                             </c:if>
                                         </c:if>
                                     </div>
@@ -147,16 +157,30 @@
                                             </c:if>
                                         </c:if>
                                     </c:forEach>
-                                    <div style="width:130px">
+                                    <div style="width:170px">
                                         <c:if test="${page < pageMax}">
 
                                             <c:if test="${isSearch == 0}">
-                                                <a href="home?page=${page+1}" class="mr-3 ml-1" >>></a>
-                                                <a href="home?page=${pageMax}" class="mr-3" >Trang cuối</a>
+                                                <div class="d-flex" style="height: 27px;">
+                                                    <button class="mr-3 ml-2" >
+                                                        <a href="home?page=${page+1}" >>></a>
+                                                    </button>
+                                                    <button class="mr-3">
+                                                        <a href="home?page=${pageMax}" style="white-space: nowrap;">Trang cuối</a>
+                                                    </button>
+                                                </div>
                                             </c:if>
                                             <c:if test="${isSearch == 1}">
-                                                <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${page+1}" class="mr-3 ml-1" >>></a>
-                                                <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${pageMax}" class="mr-3" >Trang cuối</a>
+                                                <div class="d-flex" style="height: 27px;">
+                                                    <button class="mr-3 ml-2" >
+                                                        <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${page+1}" >>></a>    
+                                                    </button>
+                                                    <button class="mr-3" >
+                                                        <a href="/WebSite_BanGiay/home/search?txtSearch=${valSearch}&page=${pageMax}" style="white-space: nowrap;">Trang cuối</a>
+                                                    </button>
+                                                </div>
+
+
                                             </c:if>
                                         </c:if>
                                     </div>

@@ -48,7 +48,7 @@ public class ShopController {
         } else {
             typeSex = "nam";
         }
-        ModelAndView mav = new ModelAndView("shop");
+        ModelAndView mav = new ModelAndView("customer/shop");
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getShopProducts(page - 1, typeSex, "");
 
@@ -130,7 +130,7 @@ public class ShopController {
             hql = "select e from Product e where " + filter;
         }
         filter = " where " + filter;
-        ModelAndView mav = new ModelAndView("shop");
+        ModelAndView mav = new ModelAndView("customer/shop");
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getShopProductsSearch(page - 1, hql);
         long total = productDao.getAmountProductsSearch(filter);
@@ -210,7 +210,7 @@ public class ShopController {
             hql = "select e from Product e where " + filter;
         }
         filter = " where " + filter;
-        ModelAndView mav = new ModelAndView("shop");
+        ModelAndView mav = new ModelAndView("customer/shop");
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getShopProductsSearch(page - 1, hql);
         long total = productDao.getAmountProductsSearch(filter);

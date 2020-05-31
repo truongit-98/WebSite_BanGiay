@@ -47,7 +47,7 @@ public class HomeController {
         if (page < 0) {
             page = 1;
         }
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView("customer/index");
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getAllProducts(page - 1);
         int total = productDao.getAmountProducts("");
@@ -65,7 +65,7 @@ public class HomeController {
 
     @RequestMapping("/shop/product/{productID}")
     public ModelAndView productDetail(@PathVariable int productID, Model model) {
-        ModelAndView mav = new ModelAndView("productDetail");
+        ModelAndView mav = new ModelAndView("customer/productDetail");
         ProductDao productDao = new ProductDao();
         Product product = productDao.getProduct(productID);
         model.addAttribute("product", product);
@@ -82,7 +82,7 @@ public class HomeController {
         if (txtSearch.trim() == "") {
             return new ModelAndView("redirect:http://localhost:8080/WebSite_BanGiay/home?page=" + page);
         }
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView("customer/index");
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getProductsByKey(txtSearch, page - 1);
         long total = productDao.getAmountProducts(txtSearch);
@@ -163,12 +163,12 @@ public class HomeController {
     
     @RequestMapping(value="/about", method=RequestMethod.GET)
     public ModelAndView aboutPage(){
-        ModelAndView mav = new ModelAndView("about");
+        ModelAndView mav = new ModelAndView("customer/about");
         return mav;
     }
     @RequestMapping(value="/contact", method=RequestMethod.GET)
     public ModelAndView contactPage(){
-        ModelAndView mav = new ModelAndView("contact");
+        ModelAndView mav = new ModelAndView("customer/contact");
         return mav;
     }
     

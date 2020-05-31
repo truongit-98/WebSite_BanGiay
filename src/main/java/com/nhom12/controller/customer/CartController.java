@@ -40,7 +40,7 @@ public class CartController {
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView index(Model model, HttpSession session) {
-        ModelAndView mav = new ModelAndView("cart");
+        ModelAndView mav = new ModelAndView("customer/cart");
         List<CartModel> cartModels = (List<CartModel>) session.getAttribute(cartSession);
         if (cartModels == null || cartModels.size() == 0) {
             return new ModelAndView("redirect:/home");

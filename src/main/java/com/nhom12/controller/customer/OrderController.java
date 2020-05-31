@@ -54,7 +54,7 @@ public class OrderController {
                         if (orders != null) {
                             model.addAttribute("orders", orders);
                             model.addAttribute("customer", new CustomerDao().getCustomerById(cookie.getId()));
-                            return new ModelAndView("order_history");
+                            return new ModelAndView("customer/order_history");
                         }
                     }
                 }

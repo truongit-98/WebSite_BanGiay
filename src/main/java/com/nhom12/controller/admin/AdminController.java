@@ -28,7 +28,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView Index(HttpServletRequest request, Model model, HttpSession session) {
-        ModelAndView mav = new ModelAndView("login-admin");
+        ModelAndView mav = new ModelAndView("admin/login-admin");
         if (session.getAttribute("username") != null) {
             return new ModelAndView("redirect:/admin/home");
         }
@@ -47,7 +47,7 @@ public class AdminController {
             Staff admin = dao.Login(userName, pass);
             if (admin == null) {
                 model.addAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng! Vui lòng nhập lại!");
-                return new ModelAndView("login-admin");
+                return new ModelAndView("admin/login-admin");
             }
             session.setAttribute("isLogin", true);
             session.setAttribute("username", userName);
@@ -67,6 +67,6 @@ public class AdminController {
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getAllProducts(0);
         model.addAttribute("products", products);
-        return new ModelAndView("home_admin");
+        return new ModelAndView("admin/home_admin");
     }
 }

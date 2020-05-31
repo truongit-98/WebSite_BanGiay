@@ -74,13 +74,13 @@ public class CustomerController {
                         cok.setDomain("localhost");
                         cok.setHttpOnly(true);
                         response.addCookie(cok);
-                        return new ModelAndView("login");
+                        return new ModelAndView("customer/login");
                     }
 
                 }
             }
         }
-        return new ModelAndView("login");
+        return new ModelAndView("customer/login");
     }
 
     @RequestMapping(value = "/customer/login", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
@@ -91,12 +91,12 @@ public class CustomerController {
 
         if (userName.isEmpty() || pass.isEmpty()) {
             model.addAttribute("errorMessage", "Tên đăng nhập và mật khẩu không thể để trống!");
-            return new ModelAndView("login");
+            return new ModelAndView("customer/login");
         } else {
             Customer cust = dao.Login(userName, pass);
             if (cust == null) {
                 model.addAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng! Vui lòng nhập lại!");
-                return new ModelAndView("login");
+                return new ModelAndView("customer/login");
             }
             UserCookie user = new UserCookie();
             user.setId(cust.getMaKH());
@@ -131,7 +131,7 @@ public class CustomerController {
 
     @RequestMapping(value = "/customer/register", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView Register(Model model) {
-        ModelAndView mav = new ModelAndView("register");
+        ModelAndView mav = new ModelAndView("customer/register");
         model.addAttribute("register", new Customer());
         return mav;
     }
@@ -146,11 +146,11 @@ public class CustomerController {
 
         if (cityId.isEmpty() || districtId.isEmpty() || wardId.isEmpty() || detailAddress.isEmpty()) {
             model.addAttribute("errorMessage", "Cần điền đầy đủ thông tin địa chỉ!");
-            return new ModelAndView("register");
+            return new ModelAndView("customer/register");
         }
         if (dao.getCustomerByEmail(c.getEmail()) != null) {
             model.addAttribute("errorMessage", "Email đã được dùng! Vui lòng sử dụng email khác!");
-            return new ModelAndView("register");
+            return new ModelAndView("customer/register");
         }
         Customer cust = new Customer();
         cust.setTenKH(c.getTenKH());
@@ -163,9 +163,9 @@ public class CustomerController {
         cust.setDiaChi(address);
         boolean result = dao.Save(cust);
         if (result) {
-            return new ModelAndView("login");
+            return new ModelAndView("customer/login");
         }
-        return new ModelAndView("register");
+        return new ModelAndView("customer/register");
     }
 
     @RequestMapping(value = "/customer/checkout", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
@@ -196,7 +196,7 @@ public class CustomerController {
                             total += c1.getPrice() * c1.getQuantity();
                         }
                         model.addAttribute("total", total);
-                        return new ModelAndView("checkout");
+                        return new ModelAndView("customer/checkout");
                     }
                 }
             }
@@ -272,7 +272,7 @@ public class CustomerController {
                         Customer cust = custDao.getCustomerById(cookie.getId());
                         if (cust != null) {
                             model.addAttribute("customer", cust);
-                            return new ModelAndView("accountInfo");
+                            return new ModelAndView("customer/accountInfo");
                         }
                     }
                 }
@@ -311,23 +311,23 @@ public class CustomerController {
                 boolean result = dao.Update(cust);
                 if (!result) {
                     model.addAttribute("errorMessage", "Không thể cập nhật thông tin tài khoản !!!");
-                    return new ModelAndView("accountInfo");
+                    return new ModelAndView("customer/accountInfo");
                 } else {
                     model.addAttribute("success", "Cập nhật thông tin tài khoản thành công");
-                    return new ModelAndView("accountInfo");
+                    return new ModelAndView("customer/accountInfo");
                 }
             }
-            return new ModelAndView("accountInfo");
+            return new ModelAndView("customer/accountInfo");
         }
         Customer cust = dao.getCustomerByEmail(email);
         cust.setTenKH(fullName);
         boolean result = true;
         if (!result) {
             model.addAttribute("errorMessage", "Không thể cập nhật thông tin tài khoản !!!");
-            return new ModelAndView("accountInfo");
+            return new ModelAndView("customer/accountInfo");
         } else {
             model.addAttribute("success", "Cập nhật thông tin tài khoản thành công");
-            return new ModelAndView("accountInfo");
+            return new ModelAndView("customer/accountInfo");
         }
 
     }
@@ -344,7 +344,7 @@ public class CustomerController {
                     if (cookie != null && (edit.equals("false") || edit.equals("true"))) {
                         model.addAttribute("isEdit", edit);
                         model.addAttribute("customer", new CustomerDao().getCustomerById(cookie.getId()));
-                        return new ModelAndView("addressInfo");
+                        return new ModelAndView("customer/addressInfo");
                     }
                 }
             }

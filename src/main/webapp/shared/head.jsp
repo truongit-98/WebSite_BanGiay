@@ -41,14 +41,14 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-datepicker.css"/>">
     <!-- Flaticons  -->
     <link rel="stylesheet" href="<c:url value="/resources/fonts/flaticon/font/flaticon.css"/>">
-    <link href="../resources/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet" type="text/css"/>
     <!-- Theme style  -->
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/mystyle.css"/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Custom styles for this template-->
-    <link href="/custom/admin/css/sb-admin-2.min.css" rel="stylesheet">
+<!--    <link href="/custom/admin/css/sb-admin-2.min.css" rel="stylesheet">-->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css"/>
 
 
@@ -73,16 +73,15 @@
     <!-- Stellar Parallax -->
     <script src="<c:url value="/resources/js/jquery.stellar.min.js"/>"></script>
     <!-- Main -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awclaw/5.13.0/js/all.min.js"></script>
     <script src="<c:url value="/resources/js/main.js"/>"></script>
-    <script src="/custom/admin/vendor/jquery/jquery.min.js"></script>
+<!--    <script src="/custom/admin/vendor/jquery/jquery.min.js"></script>
     <script src="/custom/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
+     Core plugin JavaScript
     <script src="/custom/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/custom/admin/js/sb-admin-2.min.js"></script>
+     Custom scripts for all pages
+    <script src="/custom/admin/js/sb-admin-2.min.js"></script>-->
 
 
 </head>

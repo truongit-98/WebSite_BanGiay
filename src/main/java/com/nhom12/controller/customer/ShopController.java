@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nhom12.controller;
+package com.nhom12.controller.customer;
 
 import com.nhom12.Database.Models.Producer;
 import com.nhom12.Database.Models.Product;

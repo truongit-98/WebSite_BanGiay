@@ -39,7 +39,6 @@ public class Staff implements Serializable {
     @Column(name = "MatKhau")
     private String matkhau;
 
-
     public int getManv() {
         return manv;
     }
@@ -56,12 +55,12 @@ public class Staff implements Serializable {
         this.tennv = tennv;
     }
 
-    public String getDiachi() {
-        return diachi;
+    public String getDiaChi() {
+        return diaChi;
     }
 
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
+    public void setDiaChi(String diachi) {
+        this.diaChi = diachi;
     }
 
     public String getEmail() {

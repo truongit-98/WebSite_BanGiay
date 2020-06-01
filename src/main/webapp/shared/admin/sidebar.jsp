@@ -15,7 +15,7 @@
     </script>
     <ul class="nav nav-list">
         <li class="active">
-            <a href="tables.html">
+            <a href="/WebSite_BanGiay/admin/home">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text"> Danh sách sản phẩm </span>
             </a>
@@ -31,6 +31,7 @@
 
             <b class="arrow"></b>
         </li>	
+        
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-pencil-square-o"></i>
@@ -63,7 +64,24 @@
                 </li>
             </ul>
         </li>
+	<li>
+            <a href="/WebSite_BanGiay/admin/staff">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Nhân viên </span>
+            </a>
 
+            <b class="arrow"></b>
+        </li>	
+        
+        <li class="">
+            <a href="/WebSite_BanGiay/admin/customer">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Khách hàng </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>	
+        
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>

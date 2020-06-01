@@ -21,17 +21,11 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maKH;
-    @NotNull
     private String tenKH;
-    @NotNull(message="Không thể để trống giới tính!")
     private String gioiTinh;
     private String diaChi;
-    @NotNull(message="Không thể để trống email!")
-    @Email(message="Định dạng email không hợp lệ!")
     private String email;
-    @NotNull
     private String sdt;
-    @NotNull
     private String matKhau;
     
     public int getMaKH(){

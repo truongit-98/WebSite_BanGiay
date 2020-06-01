@@ -11,6 +11,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -113,7 +115,7 @@ public class CustomerDao {
         try {
 
             session.getTransaction().begin();
-            session.persist(c);
+            session.save(c);
             session.getTransaction().commit();
             session.close();
             return true;
@@ -139,5 +141,43 @@ public class CustomerDao {
             session.getTransaction().rollback();
             return false;
         }
+    }
+    
+    public boolean Delete(Customer cust) {
+        try {
+            session = factory.getCurrentSession();
+
+            session.getTransaction().begin();
+            session.delete(cust);
+            session.getTransaction().commit();
+            session.close();
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            session.getTransaction().rollback();
+            return false;
+        }
+    }
+    
+    //Lấy danh sách khách hàng
+    public List<Customer> getCustomers() {
+        List<Customer> customers = new ArrayList<>();
+        session = factory.getCurrentSession();
+        try {
+
+            session.getTransaction().begin();
+            String hql = "from Customer";
+            Query query = session.createQuery(hql);
+            
+            customers = (List<Customer>) query.list();
+            session.getTransaction().commit();
+
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+            throw ex;
+
+        }
+        session.close();
+        return customers;
     }
 }

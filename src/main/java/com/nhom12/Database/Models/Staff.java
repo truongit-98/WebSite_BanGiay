@@ -25,21 +25,20 @@ public class Staff implements Serializable {
     @Column(name = "TenNV")
     private String tennv;
     @Column(name = "DiaChi")
-    private String diachi;
+    private String diaChi;
     @Column(name = "Email")
     private String email;
     @Column(name = "Sdt")
     private String sdt;
     @Column(name = "GioiTinh")
-    private String gioitinh;
+    private String gioiTinh;
     @Column(name = "NgaySinh")
-    private Date ngaysinh;
+    private Date ngaySinh;
     @Column(name = "CMND")
     private String cmnd;
     @Column(name = "MatKhau")
     private String matkhau;
-    @Column(name = "QuyenNV")
-    private char quyennv;
+
 
     public int getManv() {
         return manv;
@@ -58,11 +57,11 @@ public class Staff implements Serializable {
     }
 
     public String getDiaChi() {
-        return diachi;
+        return diaChi;
     }
 
     public void setDiaChi(String diachi) {
-        this.diachi = diachi;
+        this.diaChi = diachi;
     }
 
     public String getEmail() {
@@ -82,43 +81,35 @@ public class Staff implements Serializable {
     }
 
     public String getGioiTinh() {
-        return gioitinh;
+        return gioiTinh;
     }
 
     public void setGioiTinh(String gioitinh) {
-        this.gioitinh = gioitinh;
+        this.gioiTinh = gioitinh;
     }
 
     public Date getNgaySinh() {
-        return ngaysinh;
+        return ngaySinh;
     }
 
     public void setNgaySinh(Date ngaysinh) {
-        this.ngaysinh = ngaysinh;
+        this.ngaySinh = ngaysinh;
     }
 
-    public String getCMND() {
+    public String getCmnd() {
         return cmnd;
     }
 
-    public void setCMND(String cmnd) {
+    public void setCmnd(String cmnd) {
         this.cmnd = cmnd;
     }
 
-    public String getMatKhau() {
+    public String getMatkhau() {
         return matkhau;
     }
 
-    public void setMatKhau(String matkhau) {
+    public void setMatkhau(String matkhau) {
         this.matkhau = matkhau;
-    }
-    
-    public char getQuyenNV() {
-        return quyennv;
-    }
-
-    public void setQuyenNV(char quyennv) {
-        this.quyennv = quyennv;
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")

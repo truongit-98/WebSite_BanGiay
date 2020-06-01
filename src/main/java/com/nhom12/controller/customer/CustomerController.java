@@ -141,7 +141,7 @@ public class CustomerController {
         String cityId = request.getParameter("city");
         String districtId = request.getParameter("district");
         String wardId = request.getParameter("ward");
-        String detailAddress = request.getParameter("detailAddress");
+        String detailAddress = request.getParameter("diaChi");
         CustomerDao dao = new CustomerDao();
 
         if (cityId.isEmpty() || districtId.isEmpty() || wardId.isEmpty() || detailAddress.isEmpty()) {

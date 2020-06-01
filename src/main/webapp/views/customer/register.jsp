@@ -24,13 +24,13 @@
             <%@include file="/shared/customer/nav-bar.jsp" %>
             <div class="row">
                 <div class="col-lg-8" style="margin: auto;">
-                    <form method="post"  accept-charset="UTF-8" action="/WebSite_BanGiay/customer/register" class="colorlib-form" >
+                    <form method="post" autocomplete="off" accept-charset="UTF-8" action="/WebSite_BanGiay/customer/register" class="colorlib-form" >
                         <h2>Đăng ký</h2>
                         <div class="row">
                             <c:if test="${!errorMessage.isEmpty()}">
                                 <div class="error">
                                     <c:out value="${errorMessage}"></c:out>
-                                </div>
+                                    </div>
                             </c:if>
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -169,17 +169,14 @@
                                     </div>
                                 </div>
                             </div>
-                           
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="detailAddress">Địa chỉ chi tiết</label>
-                                    <input type="text"  required name="detailAddress" id="detailAddress" class="form-control" placeholder="Địa chỉ chi tiết" >
-
+                                    <input type="text"  required name="diaChi" id="" class="form-control" placeholder="Địa chỉ chi tiết" >
                                 </div>
                             </div>
-
                             <div class="col-md-12 text-center">
-                                <p><input type="submit"  class="btn btn-primary" value="Đăng ký"></input></p>
+                                <input type="submit"  class="btn btn-primary" value="Đăng ký"></input>
                             </div>
                     </form>
 

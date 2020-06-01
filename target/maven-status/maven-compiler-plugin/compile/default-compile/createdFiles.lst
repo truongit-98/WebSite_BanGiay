@@ -28,6 +28,7 @@ com\nhom12\Database\dao\ProducerDao.class
 com\nhom12\controller\customer\CustomerController$2.class
 com\nhom12\Database\dao\OrderDao.class
 com\nhom12\Database\Models\RootCity.class
+com\nhom12\controller\admin\AdminOrderController.class
 com\nhom12\Database\Models\CartModel.class
 com\nhom12\controller\customer\CustomerController$5.class
 com\nhom12\controller\customer\HomeController.class

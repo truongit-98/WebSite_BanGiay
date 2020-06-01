@@ -10,6 +10,7 @@ import com.nhom12.Database.Models.CartModel;
 import com.nhom12.Database.Models.Order;
 import com.nhom12.Database.Models.OrderDetail;
 import com.nhom12.Database.Models.OrderProductKey;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -29,10 +30,72 @@ public class OrderDao {
         factory = HibernateUtil.getSessionFactory();
     }
 
+    
+    public List<Order> getOrdersByParam(String filter, Date startDate, Date toDate, Integer offset){
+        List<Order> orders = null;
+        try {
+            
+            session = factory.getCurrentSession();
+            session.getTransaction().begin();
+            String hql = "";
+            if(filter.isEmpty()){
+                hql = "from Order o ";
+            } 
+            else {
+                hql = "from Order o where " + filter;
+            }
+            Query query = session.createQuery(hql);
+            if(startDate != null){
+                query.setParameter("startDate", startDate);
+            } 
+            if(toDate != null){
+                query.setParameter("toDate", toDate);
+            } 
+            query.setFirstResult(offset != null ? (offset - 1) * 10 : 0);
+            query.setMaxResults(10);
+            orders = (List<Order>) query.list();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            session.getTransaction().rollback();
+            session.close();
+        }
+        return orders;
+    }
+
+    public int getAmountOrdersByParam(String filter, Date startDate, Date toDate) {
+        int amount = 0;
+        try {
+            session = factory.getCurrentSession();
+            session.getTransaction().begin();
+            String hql = "";
+            if(filter.isEmpty()){
+                hql = "select count(o) from Order o";
+            } 
+            else {
+                hql = "select count(o) from Order o where " + filter;
+            }
+            Query query = session.createQuery(hql);
+             if(startDate != null){
+                query.setParameter("startDate", startDate);
+            } 
+            if(toDate != null){
+                query.setParameter("toDate", toDate);
+            } 
+            amount = ((Long)query.uniqueResult()).intValue();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            session.getTransaction().rollback();
+            session.close();
+        }
+        return amount;
+    }
+
     public List<Order> getOrdersByCustomerId(int id) {
         List<Order> orders = null;
-        session = factory.getCurrentSession();
         try {
+            session = factory.getCurrentSession();
             session.getTransaction().begin();
             String hql = "select o from Order o where o.customer.maKH=:uid";
             Query query = session.createQuery(hql);
@@ -46,12 +109,29 @@ public class OrderDao {
         session.close();
         return orders;
     }
+    
+    public Order getOrderById(int id){
+        Order order = null;
+        try {
+            session = factory.getCurrentSession();
+            session.getTransaction().begin();
+            String hql = "select o from Order o where o.maDH=:uid";
+            Query query = session.createQuery(hql);
+            query.setParameter("uid", id);
+            order = (Order) query.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        session.close();
+        return order;
+    }
 
     public boolean Save(List<CartModel> cartModels, Order order) {
         session = factory.getCurrentSession();
 
         try {
-            
             session.getTransaction().begin();
 
             session.save(order);
@@ -75,6 +155,35 @@ public class OrderDao {
             session.getTransaction().rollback();
             session.close();
             return false;
+        }
+    }
+    public boolean Update(Order order){
+        try{
+            session = factory.getCurrentSession();
+            session.getTransaction().begin();
+            session.update(order);
+            session.getTransaction().commit();
+            return true;
+        }catch(HibernateException ex){
+            session.getTransaction().rollback();
+            return false;
+        } finally{
+            session.close();
+        }
+    }
+    
+    public boolean Delete(Order order){
+        try{
+            session = factory.getCurrentSession();
+            session.getTransaction().begin();
+            session.delete(order);
+            session.getTransaction().commit();
+            return true;
+        }catch(HibernateException ex){
+            session.getTransaction().rollback();
+            return false;
+        } finally{
+            session.close();
         }
     }
 }

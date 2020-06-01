@@ -57,11 +57,11 @@ public class Staff implements Serializable {
         this.tennv = tennv;
     }
 
-    public String getDiaChi() {
+    public String getDiachi() {
         return diachi;
     }
 
-    public void setDiaChi(String diachi) {
+    public void setDiachi(String diachi) {
         this.diachi = diachi;
     }
 

@@ -132,12 +132,14 @@ public class CustomerDao {
             session.getTransaction().begin();
             session.update(cust);
             session.getTransaction().commit();
-            session.close();
+            
             return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
             session.getTransaction().rollback();
             return false;
+        } finally{
+            session.close();
         }
     }
 }

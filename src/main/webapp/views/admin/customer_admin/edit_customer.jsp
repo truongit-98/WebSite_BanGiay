@@ -39,7 +39,7 @@
                         <form method="post" action="/WebSite_BanGiay/admin/editCustomer"  class="colorlib-form">
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Mã khách hàng</div>
-                                <div><input style="width: 500px;"  name="maKH" type="text" value="" class="" value="${customer.maKH}" readonly="true"></input></div>
+                                <div><input style="width: 500px;"  name="maKH" type="text" class="" value="${customer.maKH}" readonly="true"></input></div>
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Tên khách hàng</div>
@@ -63,7 +63,7 @@
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Mật khẩu</div>
-                                <div><input  style="width: 500px;" name="matKhau" type="text"  value="${customer.matKhau}" ></input></div>
+                                <div><input  style="width: 500px;" name="matKhau" type="password"  value="${customer.matKhau}" ></input></div>
                             </div>
                             <div  style="    width: 608px;margin-left: 112px;">
                                 <input  type="submit" class="btn btn-primary" value="Lưu"></input>

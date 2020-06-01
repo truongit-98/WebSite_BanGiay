@@ -16,7 +16,6 @@ import java.util.HashSet;
 @Entity
 @Table(name="donhang")
 public class Order implements Serializable {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maDH;
@@ -103,7 +102,7 @@ public class Order implements Serializable {
     }
     
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     Set<OrderDetail> listOrderDetail = new HashSet<OrderDetail>();
     public Set<OrderDetail> getListOrderDetail(){
         return listOrderDetail;

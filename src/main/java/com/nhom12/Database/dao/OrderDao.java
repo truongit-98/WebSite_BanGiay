@@ -30,27 +30,25 @@ public class OrderDao {
         factory = HibernateUtil.getSessionFactory();
     }
 
-    
-    public List<Order> getOrdersByParam(String filter, Date startDate, Date toDate, Integer offset){
+    public List<Order> getOrdersByParam(String filter, Date startDate, Date toDate, Integer offset) {
         List<Order> orders = null;
         try {
-            
+
             session = factory.getCurrentSession();
             session.getTransaction().begin();
             String hql = "";
-            if(filter.isEmpty()){
+            if (filter.isEmpty()) {
                 hql = "from Order o ";
-            } 
-            else {
+            } else {
                 hql = "from Order o where " + filter;
             }
             Query query = session.createQuery(hql);
-            if(startDate != null){
+            if (startDate != null) {
                 query.setParameter("startDate", startDate);
-            } 
-            if(toDate != null){
+            }
+            if (toDate != null) {
                 query.setParameter("toDate", toDate);
-            } 
+            }
             query.setFirstResult(offset != null ? (offset - 1) * 10 : 0);
             query.setMaxResults(10);
             orders = (List<Order>) query.list();
@@ -69,20 +67,19 @@ public class OrderDao {
             session = factory.getCurrentSession();
             session.getTransaction().begin();
             String hql = "";
-            if(filter.isEmpty()){
+            if (filter.isEmpty()) {
                 hql = "select count(o) from Order o";
-            } 
-            else {
+            } else {
                 hql = "select count(o) from Order o where " + filter;
             }
             Query query = session.createQuery(hql);
-             if(startDate != null){
+            if (startDate != null) {
                 query.setParameter("startDate", startDate);
-            } 
-            if(toDate != null){
+            }
+            if (toDate != null) {
                 query.setParameter("toDate", toDate);
-            } 
-            amount = ((Long)query.uniqueResult()).intValue();
+            }
+            amount = ((Long) query.uniqueResult()).intValue();
             session.getTransaction().commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();
@@ -109,8 +106,8 @@ public class OrderDao {
         session.close();
         return orders;
     }
-    
-    public Order getOrderById(int id){
+
+    public Order getOrderById(int id) {
         Order order = null;
         try {
             session = factory.getCurrentSession();
@@ -157,32 +154,33 @@ public class OrderDao {
             return false;
         }
     }
-    public boolean Update(Order order){
-        try{
+
+    public boolean Update(Order order) {
+        try {
             session = factory.getCurrentSession();
             session.getTransaction().begin();
             session.update(order);
             session.getTransaction().commit();
             return true;
-        }catch(HibernateException ex){
+        } catch (HibernateException ex) {
             session.getTransaction().rollback();
             return false;
-        } finally{
+        } finally {
             session.close();
         }
     }
-    
-    public boolean Delete(Order order){
-        try{
+
+    public boolean Delete(Order order) {
+        try {
             session = factory.getCurrentSession();
             session.getTransaction().begin();
             session.delete(order);
             session.getTransaction().commit();
             return true;
-        }catch(HibernateException ex){
+        } catch (HibernateException ex) {
             session.getTransaction().rollback();
             return false;
-        } finally{
+        } finally {
             session.close();
         }
     }

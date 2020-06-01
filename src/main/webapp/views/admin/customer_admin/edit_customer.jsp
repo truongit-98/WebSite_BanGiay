@@ -39,7 +39,7 @@
                         <form method="post" action="/WebSite_BanGiay/admin/editCustomer"  class="colorlib-form">
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Mã khách hàng</div>
-                                <div><input style="width: 500px;"  name="maKH" type="text" value="" class="" value="${customer.maKH}" readonly="true"></input></div>
+                                <div><input style="width: 500px;"  name="maKH" type="text" class="" value="${customer.maKH}" readonly="true"></input></div>
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Tên khách hàng</div>

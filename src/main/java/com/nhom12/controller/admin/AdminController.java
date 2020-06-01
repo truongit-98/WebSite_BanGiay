@@ -140,9 +140,9 @@ public class AdminController {
         StaffDao dao = new StaffDao();
         boolean result = dao.Save(staff);
         if (result) {
-            return new ModelAndView("admin/staff_admin");
+            return new ModelAndView("redirect:/admin/staff_admin");
         }
-        return new ModelAndView("admin/staff_admin/add_staff");
+        return new ModelAndView("redirect:/admin/staff_admin/add_staff");
     }
     
     @RequestMapping("/admin/deleteStaff/{manv}")
@@ -188,7 +188,7 @@ public class AdminController {
         if (result) {
             return new ModelAndView("redirect:/admin/customer");
         }
-        return new ModelAndView("redirect:admin/customer");
+        return new ModelAndView("redirect:/admin/customer");
     }
 
     @RequestMapping(value = "/admin/addCustomer", method = RequestMethod.GET)
@@ -209,9 +209,9 @@ public class AdminController {
         CustomerDao dao = new CustomerDao();
         boolean result = dao.Save(cust);
         if (result) {
-            return new ModelAndView("admin/customer_admin");
+            return new ModelAndView("redirect:/admin/customer_admin");
         }
-        return new ModelAndView("admin/customer_admin/add_customer");
+        return new ModelAndView("redirect:/admin/customer_admin/add_customer");
     }
     
     

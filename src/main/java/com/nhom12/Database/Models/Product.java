@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Product implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int masp;
     @Column(name = "TenSP")
     private String tensp;
@@ -36,8 +36,8 @@ public class Product implements Serializable {
     private String anh2;
     @Column(name = "Anh3")
     private String anh3;
-    @Column(name = "MaNSX")
-    private int mansx;
+//    @Column(name = "MaNSX")
+//    private int mansx;
     @Column(name = "GioiTinh")
     private String gioitinh;
     
@@ -123,12 +123,12 @@ public class Product implements Serializable {
         anh3 = url;
     }
     
-     public int getMansx(){
-        return mansx;
-    }
-    public void setMansx(Integer maNSX){
-        this.mansx = maNSX;
-    }
+//     public int getMansx(){
+//        return mansx;
+//    }
+//    public void setMansx(Integer maNSX){
+//        this.mansx = maNSX;
+//    }
     public String getGioiTinh(){
         return gioitinh;
     }

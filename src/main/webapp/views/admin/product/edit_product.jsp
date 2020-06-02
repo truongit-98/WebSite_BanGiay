@@ -1,6 +1,6 @@
 <%-- 
-    Document   : admin_User.jsp
-    Created on : May 31, 2020, 12:36:40 AM
+    Document   : edit_product
+    Created on : Jun 2, 2020, 12:07:46 PM
     Author     : Quang Vinh
 --%>
 
@@ -35,47 +35,28 @@
             <div class='main-content'>
                 <div class="main-content-inner">
                     <div class="page-content">
-                        <h1>Sửa thông tin nhân viên</h1>
-                        <form method="POST" action="/WebSite_BanGiay/admin/editStaff"  class="colorlib-form">
+                        <h1>Sửa thông tin sản phẩm</h1>
+                        <form method="POST" action="/WebSite_BanGiay/admin/editProduct"  class="colorlib-form">
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
-                                <div style="width: 110px;">Mã nhân viên</div>
-                                <div><input style="width: 500px;"  name="manv" value="${staff.manv}" type="text" class="" readonly="true"></input></div>
+                                <div style="width: 110px;">Mã sản phẩm</div>
+                                    <div><input style="width: 500px;"  name="masp" value="${product.masp}" type="text" class="" readonly="true"></input></div>
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
-                                <div style="width: 110px;">Tên nhân viên</div>
-                                <div><input style="width: 500px;"  name="tennv" type="text"  value="${staff.tennv}" class="" ></input></div>
+                                <div style="width: 110px;">Tên sản phẩm</div>
+                                <div><input style="width: 500px;"  name="tensp" type="text"  value="${product.tensp}" class="" ></input></div>
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
-                                <div style="width: 110px;">Địa chỉ</div>
-                                <div><input style="width: 500px;"  name="diaChi" type="text" value="${staff.diaChi}"  class="" ></input></div>
+                                <div style="width: 110px;">Số lượng</div>
+                                <div><input style="width: 500px;"  name="soluongtong" type="number" value="${product.soluongtong}"  class="" ></input></div>
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
-                                <div style="width: 110px;">Email</div>
-                                <div><input style="width: 500px;"  name="email" type="text" value="${staff.email}"  class="" ></input></div>
-                            </div>
-                            
-                            <div style="display: flex;align-items: center;margin-bottom: 12px;">
-                                <div style="width: 110px;">SĐT</div>
-                                <div><input  style="width: 500px;" name="sdt" type="text" class=""  value="${staff.sdt}" ></input></div>
+                                <div style="width: 110px;">Đơn giá</div>
+                                <div><input style="width: 500px;"  name="dongia" type="number" value="${product.dongia}"  class="" ></input></div>
                             </div>
                             
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
-                                <div style="width: 110px;">Giới tính</div>
-                                <div><input style="width: 500px;"  name="gioiTinh" type="text"  value="${staff.gioiTinh}" class="" ></input></div>
-                            </div>
-                            
-                            <div style="display: flex;align-items: center;margin-bottom: 12px;">
-                                <div style="width: 110px;">Ngày sinh</div>
-                                <div><input  style="width: 500px;" name="ngaysinh" type="date" class=""  value="${staff.ngaySinh}" ></input></div>
-                            </div>
-                            
-                            <div style="display: flex;align-items: center;margin-bottom: 12px;">
-                                <div style="width: 110px;">CMND</div>
-                                <div><input  style="width: 500px;" name="cmnd" type="text"  value="${staff.cmnd}"  ></input></div>
-                            </div>
-                            <div style="display: flex;align-items: center;margin-bottom: 12px;">
-                                <div style="width: 110px;">Mật khẩu</div>
-                                <div><input  style="width: 500px;" name="matkhau" type="password" value="${staff.matkhau}" ></input></div>
+                                <div style="width: 110px;">Ngày cập nhật</div>
+                                <div><input  style="width: 500px;" name="ngaycapnhat" type="date" class=""  value="${product.ngaycapnhat}" ></input></div>
                             </div>
                             <div  style="    width: 608px;margin-left: 112px;">
                                 <input  type="submit" class="btn btn-primary" value="Lưu"></input>

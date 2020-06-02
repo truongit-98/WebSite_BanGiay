@@ -8,8 +8,9 @@ package com.nhom12.controller.admin;
 import com.nhom12.Database.Models.Product;
 import com.nhom12.Database.Models.Staff;
 import com.nhom12.Database.Models.Customer;
+import com.nhom12.Database.Models.Producer;
 import com.nhom12.Database.dao.*;
-import java.lang.reflect.Method;
+//import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -72,6 +73,87 @@ public class AdminController {
         List<Product> products = productDao.getAllProducts(0);
         model.addAttribute("products", products);
         return new ModelAndView("admin/home_admin");
+    }
+
+    @RequestMapping("/admin/editProduct/{masp}")
+    public ModelAndView AdminEditProduct(@PathVariable int masp, Model model) {
+        ModelAndView mav = new ModelAndView("admin/product/edit_product");
+        ProductDao productDao = new ProductDao();
+        Product product = productDao.getProduct(masp);
+        model.addAttribute("product", product);
+        return mav;
+    }
+
+    @RequestMapping(value = "/admin/editProduct", method = RequestMethod.POST)
+    public ModelAndView AdminEditProductPost(Product s, HttpServletRequest request, Model model) {
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MMM-dd");
+        String maNSX = request.getParameter("mansx");
+        int id = 0;
+        Date dateCreate = null;
+        try {
+            dateCreate = formatDate.parse(request.getParameter("ngaycapnhat"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Product product = new Product();
+        product.setMasp(s.getMasp());
+        product.setTensp(s.getTensp());
+        product.setSoluongtong(s.getSoluongtong());
+        product.setDongia(s.getDongia());
+        product.setMota(s.getMota());
+        product.setNgaycapnhat(s.getNgaycapnhat());
+
+        ProductDao productDao = new ProductDao();
+        boolean result = productDao.Update(product);
+        if (result) {
+            return new ModelAndView("redirect:/admin/home");
+        }
+        return new ModelAndView("redirect:admin/home");
+    }
+
+    @RequestMapping(value = "/admin/addProduct", method = RequestMethod.GET)
+    public ModelAndView fAdminAddProduct(Model model) {
+        ProducerDao producerDao = new ProducerDao();
+        List<Producer> producer = producerDao.getProducers();
+        model.addAttribute("producer", producer);
+        return new ModelAndView("admin/product/add_product");
+    }
+
+    @RequestMapping(value = "/admin/addProduct", method = RequestMethod.POST)
+    public ModelAndView AdminAddProductPost(Product p, HttpServletRequest request, Model model) throws ParseException {
+
+        String ngayCapNhat = request.getParameter("NgayCapNhat");
+        String maNSX = request.getParameter("mansx");
+        int id = 0;
+        Date date = null;
+        try {
+            if (!ngayCapNhat.isEmpty()) {
+                date = new SimpleDateFormat("yyyy-MM-dd").parse(ngayCapNhat);
+            }
+            if (!maNSX.isEmpty()) {
+                id = Integer.parseInt(maNSX);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        ProducerDao dao2 = new ProducerDao();
+        Product product = new Product();
+        // product.setMasp(p.getMasp());
+        product.setTensp(p.getTensp());
+        product.setSoluongtong(p.getSoluongtong());
+        product.setDongia(p.getDongia());
+        product.setMota(p.getMota());
+        product.setNgaycapnhat(date);
+
+        Producer ducer = dao2.getProducerById(id);
+        product.setProducer(ducer);
+
+        ProductDao dao = new ProductDao();
+        boolean result = dao.Save(product);
+        if (result) {
+            return new ModelAndView("redirect:/admin/home");
+        }
+        return new ModelAndView("redirect:/admin/addProduct");
     }
 
     //Danh sách nhân viên
@@ -144,7 +226,7 @@ public class AdminController {
         }
         return new ModelAndView("redirect:/admin/staff_admin/add_staff");
     }
-    
+
     @RequestMapping("/admin/deleteStaff/{manv}")
     public ModelAndView AdminDeleteStaff(@PathVariable int manv, Model model) {
         ModelAndView mav = new ModelAndView("admin/customer_admin");
@@ -213,8 +295,7 @@ public class AdminController {
         }
         return new ModelAndView("redirect:/admin/customer_admin/add_customer");
     }
-    
-    
+
     @RequestMapping("/admin/deleteCustomer/{maKH}")
     public ModelAndView AdminDeleteCustomer(@PathVariable int maKH, Model model) {
         ModelAndView mav = new ModelAndView("admin/customer_admin");

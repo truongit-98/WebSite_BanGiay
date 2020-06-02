@@ -27,7 +27,7 @@
                         <h1>Thông tin sản phẩm</h1>
                         <div class="card border-info">
                             <div style="margin-bottom: 10px">
-                                <a class="btn btn-primary" href="#">Thêm mới sản phẩm</a>
+                                <a class="btn btn-primary" href="/WebSite_BanGiay/admin/addProduct">Thêm mới sản phẩm</a>
                             </div>
                             <table id="dynamic-table" class="table table-striped table-bordered table-hover center" >
                                 <thead style="text-align: center">
@@ -49,7 +49,7 @@
                                             <td>${product.dongia}</td>
                                             <td>${product.ngaycapnhat}</td>
                                             <td style="color: white;">
-                                                <a class="btn btn-warning">Sửa</a>
+                                                <a class="btn btn-warning" href="/WebSite_BanGiay/admin/editProduct/${product.masp}">Sửa</a>
                                                 <a class="btn btn-danger">Xóa</a>
                                             </td>
                                         </tr>

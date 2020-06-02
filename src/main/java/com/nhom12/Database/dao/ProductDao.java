@@ -16,6 +16,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
+import org.hibernate.HibernateException;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
@@ -142,7 +143,7 @@ public class ProductDao {
                 Product product = new Product();
                 product.setMasp((int) line[0]);
                 product.setTensp((String) line[1]);
-                product.setAnh((String) line[2]);
+            //    product.setAnh((String) line[2]);
                 product.setDongia((double) line[3]);
                 lstProducts.add(product);
             }
@@ -223,4 +224,35 @@ public class ProductDao {
         return amount;
     }
     
+    public boolean Update(Product p) {
+        try {
+            session = factory.getCurrentSession();
+
+            session.getTransaction().begin();
+            session.update(p);
+            session.getTransaction().commit();
+            session.close();
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            session.getTransaction().rollback();
+            return false;
+        }
+    }
+    public boolean Save(Product p) {
+        session = factory.getCurrentSession();
+        try {
+
+            session.getTransaction().begin();
+            session.persist(p);
+            session.getTransaction().commit();
+            session.close();
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            session.getTransaction().rollback();
+            session.close();
+            return false;
+        }
+    }
 }

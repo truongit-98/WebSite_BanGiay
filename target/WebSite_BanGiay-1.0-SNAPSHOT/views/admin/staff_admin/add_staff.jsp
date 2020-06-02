@@ -43,7 +43,7 @@
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Địa chỉ</div>
-                                <div><input style="width: 500px;"  name="diachi" type="text" class="" ></input></div>
+                                <div><input style="width: 500px;"  name="diaChi" type="text" class="" ></input></div>
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Email</div>
@@ -51,11 +51,11 @@
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Giới tính</div>
-                                <div><input style="width: 500px;"  name="gioitinh" type="text" class="" ></input></div>
+                                <div><input style="width: 500px;"  name="gioiTinh" type="text" class="" ></input></div>
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Ngày sinh</div>
-                                <div><input  style="width: 500px;" name="born" type="date" class="" ></input></div>
+                                <div><input  style="width: 500px;" name="ngaysinh" type="date" class="" ></input></div>
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">CMND</div>

@@ -63,7 +63,7 @@
                             </div>
                             <div style="display: flex;align-items: center;margin-bottom: 12px;">
                                 <div style="width: 110px;">Mật khẩu</div>
-                                <div><input  style="width: 500px;" name="matKhau" type="text"  value="${customer.matKhau}" ></input></div>
+                                <div><input  style="width: 500px;" name="matKhau" type="password"  value="${customer.matKhau}" ></input></div>
                             </div>
                             <div  style="    width: 608px;margin-left: 112px;">
                                 <input  type="submit" class="btn btn-primary" value="Lưu"></input>

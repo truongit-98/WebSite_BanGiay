@@ -35,6 +35,7 @@ com\nhom12\controller\customer\HomeController.class
 com\nhom12\Database\dao\StaffDao.class
 com\nhom12\services\HandleAddress$2.class
 com\nhom12\Database\HibernateUtil.class
+com\nhom12\controller\admin\AdminOrderDetailController.class
 com\nhom12\Database\Models\UserCookie.class
 com\nhom12\controller\customer\CartController.class
 com\nhom12\services\HandleAddress$1.class

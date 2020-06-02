@@ -45,18 +45,18 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
-                    <a href="#" class="">
+                    <a href="/WebSite_BanGiay/admin/orders" class="">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Xử lý đơn hàng
+                        Danh sách đơn hàng
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
 
                     <b class="arrow"></b>
                 </li>
                 <li class="">
-                    <a href="#" class="">
+                    <a href="/WebSite_BanGiay/admin/orderDetails" class="">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Danh sách đơn hàng
+                        Danh sách chi tiết đơn hàng
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
 

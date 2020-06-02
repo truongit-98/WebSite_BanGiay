@@ -56,4 +56,11 @@ public class OrderDetail implements Serializable {
     public Product getProduct(){
         return product;
     }
+    @ManyToOne
+    @MapsId("MaSize")
+    @JoinColumn(name = "MaSize")
+    Size size;   
+    public Size getSize(){
+        return size;
+    }
 }

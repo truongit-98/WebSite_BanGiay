@@ -140,18 +140,17 @@ public class AdminController {
         StaffDao dao = new StaffDao();
         boolean result = dao.Save(staff);
         if (result) {
-            return new ModelAndView("redirect:/admin/staff_admin");
+            return new ModelAndView("redirect:/admin/staff");
         }
-        return new ModelAndView("redirect:/admin/staff_admin/add_staff");
+        return new ModelAndView("redirect:/admin/addStaff");
     }
-    
+
     @RequestMapping("/admin/deleteStaff/{manv}")
     public ModelAndView AdminDeleteStaff(@PathVariable int manv, Model model) {
-        ModelAndView mav = new ModelAndView("admin/customer_admin");
         StaffDao dao = new StaffDao();
         Staff staff = dao.getStaffById(manv);
         dao.Delete(staff);
-        return mav;
+        return new ModelAndView("redirect:/admin/staff");
     }
 
     //Danh sách khách hàng
@@ -209,18 +208,16 @@ public class AdminController {
         CustomerDao dao = new CustomerDao();
         boolean result = dao.Save(cust);
         if (result) {
-            return new ModelAndView("redirect:/admin/customer_admin");
+            return new ModelAndView("redirect:/admin/customer");
         }
-        return new ModelAndView("redirect:/admin/customer_admin/add_customer");
+        return new ModelAndView("redirect:/admin/addCustomer");
     }
-    
-    
+
     @RequestMapping("/admin/deleteCustomer/{maKH}")
     public ModelAndView AdminDeleteCustomer(@PathVariable int maKH, Model model) {
-        ModelAndView mav = new ModelAndView("admin/customer_admin");
         CustomerDao customerDao = new CustomerDao();
         Customer customer = customerDao.getCustomerById(maKH);
         customerDao.Delete(customer);
-        return mav;
+        return new ModelAndView("redirect:/admin/customer");
     }
 }

@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  *
- * @author ThongPVT
+ * @author Vinh
  */
 @Entity
 @Table(name = "nhanvien")
